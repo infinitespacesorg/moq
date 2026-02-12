@@ -1,0 +1,24 @@
+{
+	"name": "@isp/video-canvas",
+	"private": true,
+	"type": "module",
+	"version": "0.1.0",
+	"description": "Infinite Spaces — MoQ Video Canvas",
+	"license": "(MIT OR Apache-2.0)",
+	"scripts": {
+		"dev": "vite --open",
+		"build": "tsc --noEmit && vite build",
+		"check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@moq/hang": "workspace:^",
+		"@moq/lite": "workspace:^",
+		"@moq/signals": "workspace:^",
+		"unique-names-generator": "^4.7.1"
+	},
+	"devDependencies": {
+		"@typescript/lib-dom": "npm:@types/web@^0.0.241",
+		"typescript": "^5.9.2",
+		"vite": "^6.3.5"
+	}
+}

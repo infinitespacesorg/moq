@@ -11,7 +11,8 @@
 		"hang-live",
 		"hang-ui",
 		"hang-demo",
-		"signals"
+		"signals",
+		"video-canvas"
 	],
 	"scripts": {
 		"check": "bun run --filter='*' check",
