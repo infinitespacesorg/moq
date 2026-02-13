@@ -208,6 +208,12 @@ body {
 	border-radius: 8px;
 	overflow: hidden;
 	aspect-ratio: 16 / 9;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tile-leaving {
+	opacity: 0;
+	transform: scale(0.95);
 }
 
 .tile canvas,
@@ -468,6 +474,41 @@ body {
 
 #settings-body select:focus {
 	border-color: var(--accent);
+}
+
+/* Notifications */
+.notification {
+	position: fixed;
+	top: 12px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1000;
+	padding: 0.625rem 1rem;
+	border-radius: 8px;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	pointer-events: none;
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+
+.notification-hiding {
+	opacity: 0;
+}
+
+.notification-error {
+	background: rgba(239, 68, 68, 0.9);
+	color: white;
+}
+
+.notification-success {
+	background: rgba(34, 197, 94, 0.9);
+	color: white;
+}
+
+.notification-info {
+	background: rgba(59, 130, 246, 0.9);
+	color: white;
 }
 
 /* Debug Overlay */

@@ -7,6 +7,7 @@ import { addLocalTile, removeLocalTile, addRemoteTile, removeRemoteTile, clearRe
 import { setupDeviceSelects, resetSettings } from "./devices.ts";
 import { appendSystemMessage, resetChat } from "./chat.ts";
 import { setupControls, resetControls } from "./controls.ts";
+import { showNotification, dismissNotification } from "./notifications.ts";
 
 export function joinRoom(roomId: string, userName: string) {
 	// Switch from lobby to room view
@@ -25,10 +26,23 @@ export function joinRoom(roomId: string, userName: string) {
 	state.connection = new Moq.Connection.Reload({ url: relayUrl, enabled });
 	state.signals.cleanup(() => state.connection?.close());
 
-	// Show connection status
+	// Show connection status with user-facing notifications
+	let wasConnected = false;
 	state.signals.subscribe(state.connection.status, (status) => {
 		$connectionStatus.textContent = status;
 		$connectionStatus.className = `status-${status}`;
+		$connectionStatus.title = `Relay: ${RELAY_URL}\nStatus: ${status}`;
+
+		if (status === "connected") {
+			if (wasConnected) {
+				showNotification("Reconnected", "success", 3000);
+			} else {
+				dismissNotification();
+			}
+			wasConnected = true;
+		} else if (status === "disconnected" && wasConnected) {
+			showNotification("Connection lost. Reconnecting\u2026", "error", 0);
+		}
 	});
 
 	// Create Room for broadcast discovery (scoped to this room)
@@ -68,16 +82,40 @@ export function joinRoom(roomId: string, userName: string) {
 		state.microphone?.close();
 	});
 
-	// Wire camera source -> broadcast video
+	// Wire camera source -> broadcast video, detect media errors
+	let cameraWarned = false;
 	state.signals.effect((effect) => {
 		const source = effect.get(state.camera!.source);
 		state.publishBroadcast!.video.source.set(source);
+
+		if (!source && effect.get(state.camEnabled) && !cameraWarned) {
+			// Camera enabled but no source — may be permission denied or device error.
+			// Use a delay to avoid flashing during normal initialization.
+			const timer = setTimeout(() => {
+				if (state.camEnabled.peek() && !state.camera!.source.peek()) {
+					showNotification("Camera unavailable. Check permissions or device settings.", "error", 8000);
+					cameraWarned = true;
+				}
+			}, 3000);
+			effect.cleanup(() => clearTimeout(timer));
+		}
 	});
 
-	// Wire microphone source -> broadcast audio
+	// Wire microphone source -> broadcast audio, detect media errors
+	let micWarned = false;
 	state.signals.effect((effect) => {
 		const source = effect.get(state.microphone!.source);
 		state.publishBroadcast!.audio.source.set(source);
+
+		if (!source && effect.get(state.micEnabled) && !micWarned) {
+			const timer = setTimeout(() => {
+				if (state.micEnabled.peek() && !state.microphone!.source.peek()) {
+					showNotification("Microphone unavailable. Check permissions or device settings.", "error", 8000);
+					micWarned = true;
+				}
+			}, 3000);
+			effect.cleanup(() => clearTimeout(timer));
+		}
 	});
 
 	// Screen share — separate broadcast under {room}/{user}-screen
@@ -177,6 +215,7 @@ export function leaveRoom() {
 	resetControls();
 	resetSettings();
 	resetChat();
+	dismissNotification();
 	state.userName = "";
 
 	// Switch back to lobby

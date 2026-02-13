@@ -105,10 +105,21 @@ export function removeRemoteTile(path: Moq.Path.Valid) {
 	const existing = state.remoteTiles.get(pathStr);
 	if (!existing) return;
 
+	// Remove from tracking immediately to avoid conflicts with re-join
+	state.remoteTiles.delete(pathStr);
+
+	// Close renderer/emitter immediately (stop consuming resources)
 	existing.renderer.close();
 	existing.emitter.close();
-	existing.tile.remove();
-	state.remoteTiles.delete(pathStr);
+
+	// Animate tile removal — fade out, then remove from DOM
+	existing.tile.classList.add("tile-leaving");
+	existing.tile.addEventListener("transitionend", () => {
+		existing.tile.remove();
+	}, { once: true });
+
+	// Fallback: remove after 500ms if transitionend doesn't fire
+	setTimeout(() => { existing.tile.remove(); }, 500);
 }
 
 export function clearRemoteTiles() {
