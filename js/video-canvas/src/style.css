@@ -202,6 +202,45 @@ body {
 	overflow: hidden;
 }
 
+/* Adaptive grid layouts by participant count */
+#video-grid.grid-1 {
+	grid-template-columns: 1fr;
+	max-width: 900px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+#video-grid.grid-2 {
+	grid-template-columns: 1fr 1fr;
+}
+
+#video-grid.grid-4 {
+	grid-template-columns: 1fr 1fr;
+}
+
+#video-grid.grid-9 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+#video-grid.grid-many {
+	grid-template-columns: repeat(4, 1fr);
+	align-content: start;
+	overflow-y: auto;
+}
+
+/* Presentation layout (screen share active) */
+#video-grid.layout-presentation {
+	grid-template-columns: 3fr 1fr;
+	align-content: start;
+}
+
+#video-grid.layout-presentation .tile-screen {
+	grid-column: 1;
+	grid-row: 1 / -1;
+	aspect-ratio: auto;
+	align-self: stretch;
+}
+
 .tile {
 	position: relative;
 	background: var(--surface);

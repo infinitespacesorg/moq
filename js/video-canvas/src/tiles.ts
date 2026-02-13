@@ -4,6 +4,33 @@ import { state } from "./state.ts";
 import { $videoGrid } from "./dom.ts";
 import { appendChatMessage } from "./chat.ts";
 
+/** Update grid layout based on participant count and screen share presence. */
+function updateGridLayout() {
+	const allTiles = $videoGrid.querySelectorAll(".tile:not(.tile-leaving)");
+	const count = allTiles.length;
+	const screenTiles = $videoGrid.querySelectorAll(".tile-screen:not(.tile-leaving)");
+	const hasPresentation = screenTiles.length === 1 && count > 1;
+
+	$videoGrid.classList.remove("grid-1", "grid-2", "grid-4", "grid-9", "grid-many", "layout-presentation");
+	$videoGrid.style.gridTemplateRows = "";
+
+	if (hasPresentation) {
+		const sidebarCount = count - 1;
+		$videoGrid.classList.add("layout-presentation");
+		$videoGrid.style.gridTemplateRows = `repeat(${sidebarCount}, 1fr)`;
+	} else if (count <= 1) {
+		$videoGrid.classList.add("grid-1");
+	} else if (count === 2) {
+		$videoGrid.classList.add("grid-2");
+	} else if (count <= 4) {
+		$videoGrid.classList.add("grid-4");
+	} else if (count <= 9) {
+		$videoGrid.classList.add("grid-9");
+	} else {
+		$videoGrid.classList.add("grid-many");
+	}
+}
+
 export function addLocalTile(path: Moq.Path.Valid, broadcast: Publish.Broadcast, userName: string) {
 	const pathStr = String(path);
 	const isScreen = pathStr.endsWith("-screen");
@@ -39,12 +66,15 @@ export function addLocalTile(path: Moq.Path.Valid, broadcast: Publish.Broadcast,
 	state.signals.cleanup(() => {
 		tile.remove();
 	});
+
+	updateGridLayout();
 }
 
 export function removeLocalTile() {
 	if (state.localTile) {
 		state.localTile.remove();
 		state.localTile = undefined;
+		updateGridLayout();
 	}
 }
 
@@ -63,8 +93,9 @@ export function addRemoteTile(path: Moq.Path.Valid, broadcast: Watch.Broadcast) 
 	// Enable downloading
 	broadcast.enabled.set(true);
 
+	const isScreen = pathStr.endsWith("-screen");
 	const tile = document.createElement("div");
-	tile.className = "tile";
+	tile.className = isScreen ? "tile tile-screen" : "tile";
 
 	const canvas = document.createElement("canvas");
 
@@ -98,6 +129,8 @@ export function addRemoteTile(path: Moq.Path.Valid, broadcast: Watch.Broadcast) 
 
 		appendChatMessage(displayName, msg);
 	});
+
+	updateGridLayout();
 }
 
 export function removeRemoteTile(path: Moq.Path.Valid) {
@@ -120,6 +153,8 @@ export function removeRemoteTile(path: Moq.Path.Valid) {
 
 	// Fallback: remove after 500ms if transitionend doesn't fire
 	setTimeout(() => { existing.tile.remove(); }, 500);
+
+	updateGridLayout();
 }
 
 export function clearRemoteTiles() {
