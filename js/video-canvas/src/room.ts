@@ -75,6 +75,11 @@ export function joinRoom(roomId: string, userName: string) {
 	state.microphone = new Publish.Source.Microphone({
 		enabled: state.micEnabled,
 		device: { preferred: savedMicId },
+		constraints: {
+			echoCancellation: true,
+			noiseSuppression: true,
+			autoGainControl: true,
+		},
 	});
 
 	state.signals.cleanup(() => {
