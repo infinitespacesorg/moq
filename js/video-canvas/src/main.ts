@@ -59,6 +59,11 @@ const $chatMessages = document.getElementById("chat-messages")!;
 const $chatForm = document.getElementById("chat-form") as HTMLFormElement;
 const $chatInput = document.getElementById("chat-input") as HTMLInputElement;
 const $chatCloseBtn = document.getElementById("chat-close-btn")!;
+const $settingsBtn = document.getElementById("settings-btn")!;
+const $settingsPanel = document.getElementById("settings-panel")!;
+const $settingsCloseBtn = document.getElementById("settings-close-btn")!;
+const $cameraSelect = document.getElementById("camera-select") as HTMLSelectElement;
+const $micSelect = document.getElementById("mic-select") as HTMLSelectElement;
 
 // --- URL Parsing ---
 
@@ -187,9 +192,18 @@ function joinRoom(roomId: string, userName: string) {
 	});
 	state.signals.cleanup(() => state.publishBroadcast?.close());
 
-	// Create camera and microphone sources
-	state.camera = new Publish.Source.Camera({ enabled: state.camEnabled });
-	state.microphone = new Publish.Source.Microphone({ enabled: state.micEnabled });
+	// Create camera and microphone sources, restoring preferred devices from localStorage
+	const savedCameraId = localStorage.getItem("isp:preferred-camera") ?? undefined;
+	const savedMicId = localStorage.getItem("isp:preferred-mic") ?? undefined;
+
+	state.camera = new Publish.Source.Camera({
+		enabled: state.camEnabled,
+		device: { preferred: savedCameraId },
+	});
+	state.microphone = new Publish.Source.Microphone({
+		enabled: state.micEnabled,
+		device: { preferred: savedMicId },
+	});
 
 	state.signals.cleanup(() => {
 		state.camera?.close();
@@ -242,6 +256,9 @@ function joinRoom(roomId: string, userName: string) {
 		effect.cleanup(() => source.video?.removeEventListener("ended", onEnded));
 	});
 
+	// Wire device selectors
+	setupDeviceSelects(state.camera, state.microphone);
+
 	// Register callbacks BEFORE preview() — onLocal/onRemote iterate existing
 	// entries on registration, so registering after preview() causes a double fire:
 	// once from the iteration, once when the relay announces back.
@@ -276,9 +293,12 @@ function joinRoom(roomId: string, userName: string) {
 
 // --- Tiles ---
 
-function addLocalTile(_path: Moq.Path.Valid, broadcast: Publish.Broadcast, userName: string) {
+function addLocalTile(path: Moq.Path.Valid, broadcast: Publish.Broadcast, userName: string) {
+	const pathStr = String(path);
+	const isScreen = pathStr.endsWith("-screen");
+
 	const tile = document.createElement("div");
-	tile.className = "tile tile-local";
+	tile.className = isScreen ? "tile tile-screen" : "tile tile-local";
 
 	const video = document.createElement("video");
 	video.muted = true;
@@ -295,13 +315,17 @@ function addLocalTile(_path: Moq.Path.Valid, broadcast: Publish.Broadcast, userN
 
 	state.localTile = tile;
 
-	// Wire video source to preview
-	const cleanup = broadcast.video.source.subscribe((media) => {
-		video.srcObject = media ? new MediaStream([media]) : null;
+	// Wire video source to preview using effect (not subscribe) so we get the
+	// current value immediately — the track may already exist by the time the
+	// tile is created after the relay announces back.
+	state.signals.effect((effect) => {
+		const media = effect.get(broadcast.video.source);
+		if (media) {
+			video.srcObject = new MediaStream([media]);
+		}
 	});
 
 	state.signals.cleanup(() => {
-		cleanup();
 		tile.remove();
 	});
 }
@@ -374,6 +398,77 @@ function removeRemoteTile(path: Moq.Path.Valid) {
 	existing.emitter.close();
 	existing.tile.remove();
 	state.remoteTiles.delete(pathStr);
+}
+
+// --- Device Settings ---
+
+let settingsOpen = false;
+
+function toggleSettings() {
+	settingsOpen = !settingsOpen;
+	$settingsPanel.style.display = settingsOpen ? "flex" : "none";
+	$settingsBtn.classList.toggle("active", settingsOpen);
+	$settingsBtn.setAttribute("aria-pressed", String(settingsOpen));
+}
+
+function populateSelect(
+	select: HTMLSelectElement,
+	devices: MediaDeviceInfo[] | undefined,
+	activeId: string | undefined,
+) {
+	const previousValue = select.value;
+	select.innerHTML = "";
+
+	if (!devices?.length) {
+		const opt = document.createElement("option");
+		opt.textContent = "No devices found";
+		opt.disabled = true;
+		select.appendChild(opt);
+		return;
+	}
+
+	for (const device of devices) {
+		const opt = document.createElement("option");
+		opt.value = device.deviceId;
+		opt.textContent = device.label || `Device ${device.deviceId.slice(0, 8)}`;
+		if (device.deviceId === activeId) opt.selected = true;
+		select.appendChild(opt);
+	}
+
+	// Preserve user selection if still valid
+	if (previousValue && [...select.options].some((o) => o.value === previousValue)) {
+		select.value = previousValue;
+	}
+}
+
+function setupDeviceSelects(camera: Publish.Source.Camera, microphone: Publish.Source.Microphone) {
+	// Populate camera select when available devices change
+	state.signals.effect((effect) => {
+		const devices = effect.get(camera.device.available);
+		const active = effect.get(camera.device.active);
+		populateSelect($cameraSelect, devices, active);
+	});
+
+	// Populate mic select when available devices change
+	state.signals.effect((effect) => {
+		const devices = effect.get(microphone.device.available);
+		const active = effect.get(microphone.device.active);
+		populateSelect($micSelect, devices, active);
+	});
+
+	// On camera select change → set preferred + persist
+	$cameraSelect.addEventListener("change", () => {
+		const deviceId = $cameraSelect.value;
+		camera.device.preferred.set(deviceId);
+		localStorage.setItem("isp:preferred-camera", deviceId);
+	});
+
+	// On mic select change → set preferred + persist
+	$micSelect.addEventListener("change", () => {
+		const deviceId = $micSelect.value;
+		microphone.device.preferred.set(deviceId);
+		localStorage.setItem("isp:preferred-mic", deviceId);
+	});
 }
 
 // --- Chat ---
@@ -483,6 +578,10 @@ function setupControls(roomId: string) {
 		$screenBtn.setAttribute("aria-pressed", String(on));
 	});
 
+	// Settings toggle
+	$settingsBtn.addEventListener("click", toggleSettings);
+	$settingsCloseBtn.addEventListener("click", toggleSettings);
+
 	// Chat toggle
 	$chatBtn.addEventListener("click", toggleChat);
 	$chatCloseBtn.addEventListener("click", toggleChat);
@@ -494,6 +593,7 @@ function setupControls(roomId: string) {
 			case "m": toggleMic(); break;
 			case "v": toggleCam(); break;
 			case "s": toggleScreen(); break;
+			case "g": toggleSettings(); break;
 			case "c": toggleChat(); break;
 		}
 	});
@@ -565,6 +665,9 @@ function leaveRoom() {
 	$chatBtn.classList.remove("active", "has-unread");
 	$chatPanel.classList.add("hidden");
 	$chatMessages.innerHTML = "";
+	$settingsBtn.classList.remove("active");
+	$settingsPanel.style.display = "none";
+	settingsOpen = false;
 	state.chatMessages = [];
 	state.chatOpen = false;
 	state.userName = "";

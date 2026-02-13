@@ -61,9 +61,23 @@
 			<button id="mic-btn" type="button" title="Toggle microphone (M)" aria-label="Toggle microphone" aria-pressed="true">Mic On</button>
 			<button id="camera-btn" type="button" title="Toggle camera (V)" aria-label="Toggle camera" aria-pressed="true">Cam On</button>
 			<button id="screen-btn" type="button" title="Share screen (S)" aria-label="Share screen" aria-pressed="false">Screen</button>
+			<button id="settings-btn" type="button" title="Device settings (G)" aria-label="Device settings" aria-pressed="false">Settings</button>
 			<button id="chat-btn" type="button" title="Toggle chat (C)" aria-label="Toggle chat" aria-pressed="false">Chat</button>
 			<button id="leave-btn" type="button" title="Leave room" aria-label="Leave room">Leave</button>
 		</nav>
+
+		<div id="settings-panel" style="display: none;" aria-label="Device settings">
+			<div id="settings-header">
+				<span>Settings</span>
+				<button id="settings-close-btn" type="button" title="Close settings" aria-label="Close settings">&times;</button>
+			</div>
+			<div id="settings-body">
+				<label for="camera-select">Camera</label>
+				<select id="camera-select" aria-label="Camera device"></select>
+				<label for="mic-select">Microphone</label>
+				<select id="mic-select" aria-label="Microphone device"></select>
+			</div>
+		</div>
 	</div>
 
 	<div id="debug-overlay" class="hidden"></div>
