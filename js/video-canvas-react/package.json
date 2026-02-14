@@ -1,0 +1,29 @@
+{
+	"name": "@isp/video-canvas-react",
+	"private": true,
+	"type": "module",
+	"version": "0.1.0",
+	"description": "Infinite Spaces — MoQ Video Canvas (React)",
+	"license": "(MIT OR Apache-2.0)",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc --noEmit && vite build",
+		"check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@moq/hang": "workspace:^",
+		"@moq/lite": "workspace:^",
+		"@moq/signals": "workspace:^",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"unique-names-generator": "^4.7.1"
+	},
+	"devDependencies": {
+		"@types/react": "^19.1.8",
+		"@types/react-dom": "^19.1.6",
+		"@typescript/lib-dom": "npm:@types/web@^0.0.241",
+		"@vitejs/plugin-react": "^4.5.2",
+		"typescript": "^5.9.2",
+		"vite": "^6.3.5"
+	}
+}

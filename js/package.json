@@ -12,7 +12,8 @@
 		"hang-ui",
 		"hang-demo",
 		"signals",
-		"video-canvas"
+		"video-canvas",
+		"video-canvas-react"
 	],
 	"scripts": {
 		"check": "bun run --filter='*' check",
