@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import type { Publish } from "@moq/hang";
 import { useSignal } from "../hooks/useSignal.ts";
+import type { LayoutPosition } from "../hooks/useLayoutPosition.ts";
 
 interface SettingsPanelProps {
 	camera: Publish.Source.Camera;
 	microphone: Publish.Source.Microphone;
 	visible: boolean;
 	onClose: () => void;
+	dock: LayoutPosition;
 }
 
 /**
@@ -15,7 +17,7 @@ interface SettingsPanelProps {
  * Reads available/active devices from the MoQ publish sources and
  * persists preferred device IDs to localStorage.
  */
-export function SettingsPanel({ camera, microphone, visible, onClose }: SettingsPanelProps) {
+export function SettingsPanel({ camera, microphone, visible, onClose, dock }: SettingsPanelProps) {
 	const panelRef = useRef<HTMLDivElement>(null);
 
 	const cameraDevices = useSignal(camera.device.available);
@@ -48,7 +50,7 @@ export function SettingsPanel({ camera, microphone, visible, onClose }: Settings
 	};
 
 	return (
-		<div className="settings-panel" ref={panelRef} aria-label="Device settings">
+		<div className="settings-panel" ref={panelRef} aria-label="Device settings" data-dock={dock}>
 			<div className="settings-header">
 				<span>Settings</span>
 				<button

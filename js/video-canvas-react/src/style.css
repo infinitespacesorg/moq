@@ -108,15 +108,53 @@ body {
 	word-break: break-all;
 }
 
-/* Room */
+/* Room — CSS Grid layout driven by data-dock attribute */
 .room {
 	position: relative;
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	height: 100dvh;
 }
 
+/* Bottom dock (default) */
+.room[data-dock="bottom"] {
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"header"
+		"video"
+		"controls";
+}
+
+/* Top dock */
+.room[data-dock="top"] {
+	grid-template-rows: auto auto 1fr;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"header"
+		"controls"
+		"video";
+}
+
+/* Left dock */
+.room[data-dock="left"] {
+	grid-template-rows: auto 1fr;
+	grid-template-columns: auto 1fr;
+	grid-template-areas:
+		"header header"
+		"controls video";
+}
+
+/* Right dock */
+.room[data-dock="right"] {
+	grid-template-rows: auto 1fr;
+	grid-template-columns: 1fr auto;
+	grid-template-areas:
+		"header header"
+		"video controls";
+}
+
 .room-header {
+	grid-area: header;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -157,13 +195,14 @@ body {
 
 /* Video Grid */
 .video-grid {
-	flex: 1;
+	grid-area: video;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 	gap: 8px;
 	padding: 8px;
 	align-content: center;
 	overflow: hidden;
+	min-height: 0; /* prevent grid blowout */
 }
 
 .video-grid.grid-1 {
@@ -238,6 +277,7 @@ body {
 
 /* Controls */
 .controls {
+	grid-area: controls;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -245,6 +285,28 @@ body {
 	padding: 0.75rem;
 	background: var(--surface);
 	border-top: 1px solid var(--border);
+}
+
+/* Top dock: border on bottom instead of top */
+.room[data-dock="top"] > .controls {
+	border-top: none;
+	border-bottom: 1px solid var(--border);
+}
+
+/* Left/Right dock: vertical controls */
+.room[data-dock="left"] > .controls,
+.room[data-dock="right"] > .controls {
+	flex-direction: column;
+	border-top: none;
+	overflow-y: auto;
+}
+
+.room[data-dock="left"] > .controls {
+	border-right: 1px solid var(--border);
+}
+
+.room[data-dock="right"] > .controls {
+	border-left: 1px solid var(--border);
 }
 
 .control-btn {
@@ -300,6 +362,20 @@ body {
 	border-radius: 50%;
 }
 
+.control-btn-dock {
+	min-width: 40px !important;
+	font-size: 1.1rem !important;
+	padding: 0.5rem !important;
+}
+
+/* Vertical controls: full-width buttons */
+.room[data-dock="left"] .control-btn,
+.room[data-dock="right"] .control-btn {
+	min-width: unset;
+	width: 100%;
+	white-space: nowrap;
+}
+
 /* Chat Panel */
 .chat-panel {
 	position: absolute;
@@ -312,6 +388,28 @@ body {
 	background: var(--surface);
 	border-left: 1px solid var(--border);
 	z-index: 50;
+}
+
+/* Top dock: chat stretches from below header+controls to bottom */
+.chat-panel[data-dock="top"] {
+	top: 104px;
+	bottom: 0;
+}
+
+/* Left dock: chat on right, full height below header */
+.chat-panel[data-dock="left"] {
+	top: 48px;
+	bottom: 0;
+}
+
+/* Right dock: chat on left side to avoid controls overlap */
+.chat-panel[data-dock="right"] {
+	right: auto;
+	left: 0;
+	top: 48px;
+	bottom: 0;
+	border-left: none;
+	border-right: 1px solid var(--border);
 }
 
 .chat-header {
@@ -408,6 +506,29 @@ body {
 	z-index: 100;
 }
 
+/* Top dock: settings below controls */
+.settings-panel[data-dock="top"] {
+	bottom: auto;
+	top: 110px;
+}
+
+/* Left dock: settings to the right of controls */
+.settings-panel[data-dock="left"] {
+	bottom: auto;
+	left: 108px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/* Right dock: settings to the left of controls */
+.settings-panel[data-dock="right"] {
+	bottom: auto;
+	left: auto;
+	right: 108px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 .settings-header {
 	display: flex;
 	align-items: center;
@@ -477,4 +598,22 @@ body {
 	line-height: 1.6;
 	white-space: pre;
 	pointer-events: none;
+}
+
+/* Top dock: debug at bottom-left (away from controls) */
+.debug-overlay[data-dock="top"] {
+	bottom: 12px;
+	left: 12px;
+}
+
+/* Left dock: offset from controls column */
+.debug-overlay[data-dock="left"] {
+	bottom: 12px;
+	left: 120px;
+}
+
+/* Right dock: debug at bottom-left */
+.debug-overlay[data-dock="right"] {
+	bottom: 12px;
+	left: 12px;
 }

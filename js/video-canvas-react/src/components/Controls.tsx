@@ -1,4 +1,12 @@
 import { useEffect } from "react";
+import type { LayoutPosition } from "../hooks/useLayoutPosition.ts";
+
+const DOCK_ARROWS: Record<LayoutPosition, string> = {
+	bottom: "\u2193", // ↓
+	right: "\u2192",  // →
+	top: "\u2191",    // ↑
+	left: "\u2190",   // ←
+};
 
 interface ControlsProps {
 	micEnabled: boolean;
@@ -14,6 +22,8 @@ interface ControlsProps {
 	onCopyLink: () => void;
 	onLeave: () => void;
 	unreadChat: boolean;
+	dock: LayoutPosition;
+	onCycleDock: () => void;
 }
 
 /**
@@ -36,6 +46,8 @@ export function Controls({
 	onCopyLink,
 	onLeave,
 	unreadChat,
+	dock,
+	onCycleDock,
 }: ControlsProps) {
 	// Keyboard shortcuts (only when not typing in chat input)
 	useEffect(() => {
@@ -112,6 +124,15 @@ export function Controls({
 				title="Copy invite link"
 			>
 				Copy Link
+			</button>
+
+			<button
+				className="control-btn control-btn-dock"
+				onClick={onCycleDock}
+				aria-label={`Dock controls: ${dock}`}
+				title={`Dock: ${dock} (click to cycle)`}
+			>
+				{DOCK_ARROWS[dock]}
 			</button>
 
 			<button

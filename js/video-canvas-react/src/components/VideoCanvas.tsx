@@ -5,6 +5,7 @@ import { useRoom } from "../hooks/useRoom.ts";
 import { useBroadcast } from "../hooks/useBroadcast.ts";
 import { useScreenShare } from "../hooks/useScreenShare.ts";
 import { useChat } from "../hooks/useChat.ts";
+import { useLayoutPosition } from "../hooks/useLayoutPosition.ts";
 import { Lobby } from "./Lobby.tsx";
 import { VideoGrid } from "./VideoGrid.tsx";
 import { Controls } from "./Controls.tsx";
@@ -19,6 +20,8 @@ export interface VideoCanvasProps {
 	initialRoom?: string;
 	/** Pre-fill user name from props (overrides URL param). */
 	initialName?: string;
+	/** Initial dock position for controls. Overridden by localStorage if set. */
+	initialDock?: "top" | "right" | "bottom" | "left";
 }
 
 function parseURL(): { room?: string; name?: string } {
@@ -35,7 +38,7 @@ function parseURL(): { room?: string; name?: string } {
  * Renders a lobby (pre-join) or the active video call room.
  * Manages connection, room, broadcast, screen share, and chat lifecycle.
  */
-export function VideoCanvas({ relayUrl, initialRoom, initialName }: VideoCanvasProps) {
+export function VideoCanvas({ relayUrl, initialRoom, initialName, initialDock }: VideoCanvasProps) {
 	const defaultRelayUrl = relayUrl ?? (typeof import.meta !== "undefined" ? import.meta.env?.VITE_RELAY_URL : undefined) ?? "http://localhost:4443/anon";
 
 	const urlParams = parseURL();
@@ -72,6 +75,7 @@ export function VideoCanvas({ relayUrl, initialRoom, initialName }: VideoCanvasP
 			roomId={joined.roomId}
 			userName={joined.userName}
 			onLeave={handleLeave}
+			initialDock={initialDock}
 		/>
 	);
 }
@@ -81,6 +85,7 @@ interface RoomViewProps {
 	roomId: string;
 	userName: string;
 	onLeave: () => void;
+	initialDock?: "top" | "right" | "bottom" | "left";
 }
 
 /**
@@ -88,8 +93,9 @@ interface RoomViewProps {
  *
  * Manages all MoQ connections, broadcasting, and participant tracking.
  */
-function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
+function RoomView({ relayUrl, roomId, userName, onLeave, initialDock }: RoomViewProps) {
 	const { connection, status } = useConnection(relayUrl);
+	const { position: dock, cyclePosition: cycleDock } = useLayoutPosition(initialDock);
 
 	const broadcastPath = `${roomId}/${userName}`;
 	const { broadcast, camera, microphone, micEnabled, camEnabled, toggleMic, toggleCam } = useBroadcast(connection, broadcastPath);
@@ -145,7 +151,7 @@ function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
 	}, [roomId]);
 
 	return (
-		<div className="room">
+		<div className="room" data-dock={dock}>
 			{/* Header */}
 			<header className="room-header" role="banner">
 				<span className="room-name">{roomId}</span>
@@ -177,6 +183,8 @@ function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
 				onCopyLink={handleCopyLink}
 				onLeave={onLeave}
 				unreadChat={unreadChat}
+				dock={dock}
+				onCycleDock={cycleDock}
 			/>
 
 			{/* Settings Panel */}
@@ -185,6 +193,7 @@ function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
 				microphone={microphone}
 				visible={settingsOpen}
 				onClose={toggleSettings}
+				dock={dock}
 			/>
 
 			{/* Chat Panel */}
@@ -193,6 +202,7 @@ function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
 				onSend={send}
 				visible={chatOpen}
 				onClose={toggleChat}
+				dock={dock}
 			/>
 
 			{/* Debug Overlay */}
@@ -204,6 +214,7 @@ function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
 				micEnabled={micEnabled}
 				camEnabled={camEnabled}
 				screenEnabled={screenEnabled}
+				dock={dock}
 			/>
 		</div>
 	);

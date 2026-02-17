@@ -1,11 +1,13 @@
 import { useRef, useEffect, useState } from "react";
 import type { ChatMessage } from "../hooks/useChat.ts";
+import type { LayoutPosition } from "../hooks/useLayoutPosition.ts";
 
 interface ChatPanelProps {
 	messages: readonly ChatMessage[];
 	onSend: (text: string) => void;
 	visible: boolean;
 	onClose: () => void;
+	dock: LayoutPosition;
 }
 
 /**
@@ -13,7 +15,7 @@ interface ChatPanelProps {
  *
  * Shows message list with auto-scroll, input form, and close button.
  */
-export function ChatPanel({ messages, onSend, visible, onClose }: ChatPanelProps) {
+export function ChatPanel({ messages, onSend, visible, onClose, dock }: ChatPanelProps) {
 	const [input, setInput] = useState("");
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -42,7 +44,7 @@ export function ChatPanel({ messages, onSend, visible, onClose }: ChatPanelProps
 	if (!visible) return null;
 
 	return (
-		<aside className="chat-panel" role="log" aria-label="Chat">
+		<aside className="chat-panel" role="log" aria-label="Chat" data-dock={dock}>
 			<div className="chat-header">
 				<span>Chat</span>
 				<button className="chat-close-btn" onClick={onClose} aria-label="Close chat">

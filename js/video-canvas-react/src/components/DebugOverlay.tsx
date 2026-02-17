@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { RoomParticipant } from "../hooks/useRoom.ts";
+import type { LayoutPosition } from "../hooks/useLayoutPosition.ts";
 
 type ReloadStatus = "connecting" | "connected" | "disconnected";
 
@@ -11,6 +12,7 @@ interface DebugOverlayProps {
 	micEnabled: boolean;
 	camEnabled: boolean;
 	screenEnabled: boolean;
+	dock: LayoutPosition;
 }
 
 /**
@@ -26,6 +28,7 @@ export function DebugOverlay({
 	micEnabled,
 	camEnabled,
 	screenEnabled,
+	dock,
 }: DebugOverlayProps) {
 	const [visible, setVisible] = useState(false);
 
@@ -45,13 +48,14 @@ export function DebugOverlay({
 	const remotePaths = [...remotes.keys()].join("\n  ");
 
 	return (
-		<pre className="debug-overlay">
+		<pre className="debug-overlay" data-dock={dock}>
 			{`relay: ${relayUrl}\n`}
 			{`conn:  ${status}\n`}
 			{`user:  ${userName || "n/a"}\n`}
 			{`remote tiles: ${remotes.size}\n`}
 			{remotePaths ? `  ${remotePaths}\n` : ""}
-			{`mic: ${micEnabled}  cam: ${camEnabled}  screen: ${screenEnabled}`}
+			{`mic: ${micEnabled}  cam: ${camEnabled}  screen: ${screenEnabled}\n`}
+			{`dock: ${dock}`}
 		</pre>
 	);
 }
