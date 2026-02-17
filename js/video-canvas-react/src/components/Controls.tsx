@@ -5,10 +5,12 @@ interface ControlsProps {
 	camEnabled: boolean;
 	screenEnabled: boolean;
 	chatOpen: boolean;
+	settingsOpen: boolean;
 	onToggleMic: () => void;
 	onToggleCam: () => void;
 	onToggleScreen: () => void;
 	onToggleChat: () => void;
+	onToggleSettings: () => void;
 	onCopyLink: () => void;
 	onLeave: () => void;
 	unreadChat: boolean;
@@ -17,18 +19,20 @@ interface ControlsProps {
 /**
  * Video call control bar.
  *
- * Mic/Cam/Screen/Chat toggle buttons, copy-link, and leave.
- * Keyboard shortcuts: M=mic, V=cam, S=screen, C=chat.
+ * Mic/Cam/Screen/Settings/Chat toggle buttons, copy-link, and leave.
+ * Keyboard shortcuts: M=mic, V=cam, S=screen, G=settings, C=chat.
  */
 export function Controls({
 	micEnabled,
 	camEnabled,
 	screenEnabled,
 	chatOpen,
+	settingsOpen,
 	onToggleMic,
 	onToggleCam,
 	onToggleScreen,
 	onToggleChat,
+	onToggleSettings,
 	onCopyLink,
 	onLeave,
 	unreadChat,
@@ -41,12 +45,13 @@ export function Controls({
 				case "m": onToggleMic(); break;
 				case "v": onToggleCam(); break;
 				case "s": onToggleScreen(); break;
+				case "g": onToggleSettings(); break;
 				case "c": onToggleChat(); break;
 			}
 		};
 		document.addEventListener("keydown", handleKeydown);
 		return () => document.removeEventListener("keydown", handleKeydown);
-	}, [onToggleMic, onToggleCam, onToggleScreen, onToggleChat]);
+	}, [onToggleMic, onToggleCam, onToggleScreen, onToggleSettings, onToggleChat]);
 
 	return (
 		<nav className="controls" role="toolbar" aria-label="Call controls">
@@ -78,6 +83,16 @@ export function Controls({
 				title="Toggle screen share (S)"
 			>
 				{screenEnabled ? "Stop Share" : "Screen"}
+			</button>
+
+			<button
+				className={`control-btn ${settingsOpen ? "active" : ""}`}
+				onClick={onToggleSettings}
+				aria-pressed={settingsOpen}
+				aria-label="Device settings"
+				title="Device settings (G)"
+			>
+				Settings
 			</button>
 
 			<button

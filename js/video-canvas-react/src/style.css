@@ -392,6 +392,75 @@ body {
 	border-color: var(--accent);
 }
 
+/* Settings Panel */
+.settings-panel {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	bottom: 64px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 320px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+	z-index: 100;
+}
+
+.settings-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.625rem 0.75rem;
+	border-bottom: 1px solid var(--border);
+	font-weight: 600;
+	font-size: 0.875rem;
+}
+
+.settings-close-btn {
+	background: transparent;
+	border: none;
+	color: var(--text-muted);
+	font-size: 1.25rem;
+	cursor: pointer;
+	padding: 0 0.25rem;
+	line-height: 1;
+}
+
+.settings-close-btn:hover {
+	color: var(--text);
+}
+
+.settings-body {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.75rem;
+}
+
+.settings-body label {
+	font-size: 0.75rem;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.settings-body select {
+	background: var(--bg);
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	padding: 0.5rem 0.625rem;
+	color: var(--text);
+	font-size: 0.8125rem;
+	outline: none;
+	width: 100%;
+}
+
+.settings-body select:focus {
+	border-color: var(--accent);
+}
+
 /* Debug Overlay */
 .debug-overlay {
 	position: fixed;

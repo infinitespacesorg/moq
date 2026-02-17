@@ -9,6 +9,7 @@ import { Lobby } from "./Lobby.tsx";
 import { VideoGrid } from "./VideoGrid.tsx";
 import { Controls } from "./Controls.tsx";
 import { ChatPanel } from "./ChatPanel.tsx";
+import { SettingsPanel } from "./SettingsPanel.tsx";
 import { DebugOverlay } from "./DebugOverlay.tsx";
 
 export interface VideoCanvasProps {
@@ -91,8 +92,14 @@ function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
 	const { connection, status } = useConnection(relayUrl);
 
 	const broadcastPath = `${roomId}/${userName}`;
-	const { broadcast, micEnabled, camEnabled, toggleMic, toggleCam } = useBroadcast(connection, broadcastPath);
+	const { broadcast, camera, microphone, micEnabled, camEnabled, toggleMic, toggleCam } = useBroadcast(connection, broadcastPath);
 	const { screenEnabled, toggleScreen, screenBroadcast } = useScreenShare(connection, roomId, userName);
+
+	// Settings panel
+	const [settingsOpen, setSettingsOpen] = useState(false);
+	const toggleSettings = useCallback(() => {
+		setSettingsOpen((prev) => !prev);
+	}, []);
 
 	const { room, remotes } = useRoom(connection, roomId);
 
@@ -161,13 +168,23 @@ function RoomView({ relayUrl, roomId, userName, onLeave }: RoomViewProps) {
 				camEnabled={camEnabled}
 				screenEnabled={screenEnabled}
 				chatOpen={chatOpen}
+				settingsOpen={settingsOpen}
 				onToggleMic={toggleMic}
 				onToggleCam={toggleCam}
 				onToggleScreen={toggleScreen}
 				onToggleChat={toggleChat}
+				onToggleSettings={toggleSettings}
 				onCopyLink={handleCopyLink}
 				onLeave={onLeave}
 				unreadChat={unreadChat}
+			/>
+
+			{/* Settings Panel */}
+			<SettingsPanel
+				camera={camera}
+				microphone={microphone}
+				visible={settingsOpen}
+				onClose={toggleSettings}
 			/>
 
 			{/* Chat Panel */}
