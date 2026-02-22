@@ -166,18 +166,24 @@ impl OriginNode {
 	}
 
 	fn consume(&mut self, id: ConsumerId, mut notify: OriginConsumerNotify) {
-		self.consume_initial(&mut notify);
+		let node_ptr = self as *const _ as usize;
+		tracing::debug!(root = %notify.root, nested_count = self.nested.len(), has_broadcast = self.broadcast.is_some(), node_ptr = format_args!("{:#x}", node_ptr), "consume_initial: starting");
+		self.consume_initial(&mut notify, 0);
 		self.notify.lock().consumers.insert(id, notify);
 	}
 
-	fn consume_initial(&mut self, notify: &mut OriginConsumerNotify) {
+	fn consume_initial(&mut self, notify: &mut OriginConsumerNotify, depth: usize) {
+		let node_ptr = self as *const _ as usize;
 		if let Some(broadcast) = &self.broadcast {
+			tracing::debug!(root = %notify.root, path = %broadcast.path, depth, node_ptr = format_args!("{:#x}", node_ptr), "consume_initial: found broadcast");
 			notify.announce(&broadcast.path, broadcast.active.clone());
 		}
 
 		// Recursively subscribe to all nested nodes.
+		let keys: Vec<String> = self.nested.keys().cloned().collect();
+		tracing::debug!(root = %notify.root, depth, nested = ?keys, node_ptr = format_args!("{:#x}", node_ptr), "consume_initial: traversing children");
 		for nested in self.nested.values() {
-			nested.lock().consume_initial(notify);
+			nested.lock().consume_initial(notify, depth + 1);
 		}
 	}
 
@@ -205,12 +211,15 @@ impl OriginNode {
 		let full = full.as_path();
 		let relative = relative.as_path();
 
+		tracing::debug!(%full, %relative, "remove: starting");
+
 		if let Some((dir, relative)) = relative.next_part() {
 			let nested = self.entry(dir);
 			let mut locked = nested.lock();
 			locked.remove(&full, broadcast, &relative);
 
 			if locked.is_empty() {
+				tracing::debug!(%full, dir, "remove: cleaning up empty node");
 				drop(locked);
 				self.nested.remove(dir);
 			}
@@ -373,13 +382,16 @@ impl OriginProducer {
 		};
 
 		let full = self.root.join(&path);
+		tracing::debug!(origin_root = %self.root, path = %path, full = %full, "publish_broadcast");
 
 		root.lock().publish(&full, &broadcast, &rest);
 		let root = root.clone();
 
+		let full2 = full.clone();
 		web_async::spawn(async move {
 			broadcast.closed().await;
-			root.lock().remove(&full, broadcast, &rest);
+			tracing::warn!(path = %full2, "publish_broadcast: broadcast closed, removing");
+			root.lock().remove(&full2, broadcast, &rest);
 		});
 
 		true
@@ -414,10 +426,13 @@ impl OriginProducer {
 	/// Returns None if the provided root is not authorized; when publish_only was already used without a wildcard.
 	pub fn with_root(&self, prefix: impl AsPath) -> Option<Self> {
 		let prefix = prefix.as_path();
+		let new_root = self.root.join(&prefix).to_owned();
+		let new_nodes = self.nodes.root(&prefix)?;
+		tracing::debug!(old_root = %self.root, prefix = %prefix, new_root = %new_root, node_count = new_nodes.nodes.len(), "with_root (producer)");
 
 		Some(Self {
-			root: self.root.join(&prefix).to_owned(),
-			nodes: self.nodes.root(&prefix)?,
+			root: new_root,
+			nodes: new_nodes,
 		})
 	}
 
