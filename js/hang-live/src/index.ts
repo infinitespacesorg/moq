@@ -88,8 +88,6 @@ export class Room {
 			const update = await announced.next();
 			if (!update) break;
 
-			console.log(`[ANNOUNCE] path="${update.path}" active=${update.active} camera="${this.local.camera.path.peek()}" share="${this.local.share.path.peek()}"`);
-
 			if (update.path === this.local.camera.path.peek()) {
 				if (update.active) {
 					const broadcast = this.space.add(update.path, this.local.camera);

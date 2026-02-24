@@ -119,13 +119,11 @@ export class Source {
 			for (const [name, rendition] of Object.entries(renditions)) {
 				const description = rendition.description ? Hex.toBytes(rendition.description) : undefined;
 
-				console.log(`[HANG DEBUG] Testing rendition "${name}":`, JSON.stringify(rendition));
 				const { supported: valid } = await VideoDecoder.isConfigSupported({
 					...rendition,
 					description,
 					optimizeForLatency: rendition.optimizeForLatency ?? true,
 				});
-				console.log(`[HANG DEBUG] Rendition "${name}" supported=${valid}`);
 				if (valid) supported[name] = rendition;
 			}
 
@@ -221,13 +219,8 @@ export class Source {
 			}
 		});
 
-		let decodedFrameCount = 0;
 		const decoder = new VideoDecoder({
 			output: async (frame: VideoFrame) => {
-				decodedFrameCount++;
-				if (decodedFrameCount <= 3) {
-					console.log(`[HANG DEBUG] Decoded frame #${decodedFrameCount}: ${frame.displayWidth}x${frame.displayHeight}, ts=${frame.timestamp}`);
-				}
 				// Insert into a queue so we can perform ordered sleeps.
 				// If this were to block, I believe WritableStream is still ordered.
 				try {
@@ -238,23 +231,16 @@ export class Source {
 			},
 			// TODO bubble up error
 			error: (error) => {
-				console.error("[HANG DEBUG] VideoDecoder error:", error);
+				console.error("VideoDecoder error:", error);
 				effect.close();
 			},
 		});
 		effect.cleanup(() => decoder.close());
 
-		let renderCount = 0;
 		effect.spawn(async () => {
-			try {
 			for (;;) {
 				const { value: frame } = await reader.read();
-				if (!frame) {
-					console.log(`[HANG DEBUG] Render loop ended: no more frames after ${renderCount} rendered`);
-					break;
-				}
-
-				renderCount++;
+				if (!frame) break;
 
 				// Sleep until it's time to decode the next frame.
 				const ref = performance.now() - frame.timestamp / 1000;
@@ -296,13 +282,6 @@ export class Source {
 					prev?.close();
 					return frame;
 				});
-
-				if (renderCount <= 3 || renderCount % 30 === 0) {
-					console.log(`[HANG DEBUG] Rendered frame #${renderCount}, ts=${frame.timestamp}`);
-				}
-			}
-			} catch (err) {
-				console.error(`[HANG DEBUG] Render loop error after ${renderCount} frames:`, err);
 			}
 		});
 
@@ -313,46 +292,20 @@ export class Source {
 			// @ts-expect-error Only supported by Chrome, so the renderer has to flip manually.
 			flip: false,
 		};
-		console.log("[HANG DEBUG] Configuring decoder:", JSON.stringify({
-			codec: decoderConfig.codec,
-			codedWidth: decoderConfig.codedWidth,
-			codedHeight: decoderConfig.codedHeight,
-			hasDescription: !!decoderConfig.description,
-			optimizeForLatency: decoderConfig.optimizeForLatency,
-		}));
 		decoder.configure(decoderConfig);
-		console.log("[HANG DEBUG] Decoder configured, state:", decoder.state);
 
-		let chunkCount = 0;
 		effect.spawn(async () => {
-			try {
-				for (;;) {
-					const next = await Promise.race([consumer.decode(), effect.cancel]);
-					if (!next) {
-						console.log(`[HANG DEBUG] Chunk feeding loop ended: consumer returned null/undefined (effect cancelled or stream ended) after ${chunkCount} chunks`);
-						break;
-					}
+			for (;;) {
+				const next = await Promise.race([consumer.decode(), effect.cancel]);
+				if (!next) break;
 
-					chunkCount++;
-					if (chunkCount <= 10 || chunkCount % 30 === 0) {
-						console.log(`[HANG DEBUG] Feeding chunk #${chunkCount}: type=${next.keyframe ? "key" : "delta"}, size=${next.data.byteLength}, ts=${next.timestamp}, decoder=${decoder.state}`);
-					}
+				const chunk = new EncodedVideoChunk({
+					type: next.keyframe ? "key" : "delta",
+					data: next.data,
+					timestamp: next.timestamp,
+				});
 
-					const chunk = new EncodedVideoChunk({
-						type: next.keyframe ? "key" : "delta",
-						data: next.data,
-						timestamp: next.timestamp,
-					});
-
-					try {
-						decoder.decode(chunk);
-					} catch (decodeErr) {
-						console.error(`[HANG DEBUG] decoder.decode() THREW on chunk #${chunkCount}:`, decodeErr);
-						throw decodeErr;
-					}
-				}
-			} catch (err) {
-				console.error(`[HANG DEBUG] Chunk feeding spawn error after ${chunkCount} chunks:`, err);
+				decoder.decode(chunk);
 			}
 		});
 	}

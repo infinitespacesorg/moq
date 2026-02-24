@@ -87,9 +87,12 @@ export class Room {
 		const url = connection.url;
 		if (!url) return;
 
-		const name = effect.get(this.path);
-
-		const announced = connection.announced(name);
+		// Discover ALL broadcasts on the relay (empty prefix).
+		// Previously passed `this.path` as prefix, which scoped ANNOUNCE
+		// responses to that subtree only — preventing discovery of broadcasts
+		// under different prefixes (e.g., "audience/theater/default" when
+		// path was "roomName").
+		const announced = connection.announced();
 		effect.cleanup(() => announced.close());
 
 		effect.spawn(async () => {
