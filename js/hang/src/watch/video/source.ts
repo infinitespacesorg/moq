@@ -289,7 +289,7 @@ export class Source {
 			...config,
 			description: config.description ? Hex.toBytes(config.description) : undefined,
 			optimizeForLatency: config.optimizeForLatency ?? true,
-			// @ts-expect-error Only supported by Chrome, so the renderer has to flip manually.
+			// flip: Only supported by Chrome, so the renderer has to flip manually.
 			flip: false,
 		};
 		decoder.configure(decoderConfig);
