@@ -1,0 +1,447 @@
+rm -rf mlog/
+mkdir -p mlog/relay mlog/client
+Running interop tests...
+  Relay:  moq-interop-relay:local
+  Client: ghcr.io/englishm/moq-interop-runner-xquic-client:latest
+  URL:    https://relay:4443
+time="2026-11-15T22:21:59Z" level=warning msg="The \"PORT\" variable is not set. Defaulting to a blank string."
+time="2026-11-15T22:21:59Z" level=warning msg="The \"PORT\" variable is not set. Defaulting to a blank string."
+time="2026-11-15T22:21:59Z" level=warning msg="The \"PORT\" variable is not set. Defaulting to a blank string."
+time="2026-11-15T22:21:59Z" level=warning msg="The \"HEX\" variable is not set. Defaulting to a blank string."
+time="2026-11-15T22:21:59Z" level=warning msg="The \"HEX\" variable is not set. Defaulting to a blank string."
+ Container runner-upstream-test-client-1 Recreate 
+ Container runner-upstream-test-client-1 Recreated 
+Attaching to relay-1, test-client-1
+ Container runner-upstream-relay-1 Starting 
+ Container runner-upstream-relay-1 Started 
+ Container runner-upstream-relay-1 Waiting 
+relay-1  | [2m2026-11-15T22:21:59.958171Z[0m [33m WARN[0m [2mmoq_sock::bind[0m[2m:[0m UDP receive buffer is smaller than requested; raise `net.core.rmem_max` or expect packet loss under load [3mwanted[0m[2m=[0m8388608 [3mgranted[0m[2m=[0m1048576
+relay-1  | [2m2026-11-15T22:21:59.958191Z[0m [33m WARN[0m [2mmoq_sock::bind[0m[2m:[0m UDP send buffer is smaller than requested; raise `net.core.wmem_max` or expect packet loss under load [3mwanted[0m[2m=[0m8388608 [3mgranted[0m[2m=[0m4194304
+relay-1  | [2m2026-11-15T22:21:59.958476Z[0m [32m INFO[0m [2mmoq_relay::cluster[0m[2m:[0m cluster initialized [3mhop_id[0m[2m=[0m7969891107893826
+relay-1  | [2m2026-11-15T22:21:59.958525Z[0m [32m INFO[0m [2mmoq_relay::relay[0m[2m:[0m listening [3maddr[0m[2m=[0m[::]:4443 [3mkind[0m[2m=[0m"quic"
+relay-1  | [2m2026-11-15T22:21:59.958650Z[0m [32m INFO[0m [2mmoq_relay::cluster[0m[2m:[0m no cluster peers configured; running standalone
+ Container runner-upstream-relay-1 Healthy 
+ Container runner-upstream-test-client-1 Starting 
+ Container runner-upstream-test-client-1 Started 
+test-client-1  | TAP version 14
+test-client-1  | 1..26
+test-client-1  | [2026/11/15 22:22:05 583803] [error] |scid:896c7da123c9ce08|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 583832] [error] |scid:896c7da123c9ce08|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 666895] [report] |scid:896c7da123c9ce08|xqc_conn_destroy|000058C806094860|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1749|first_send_delay:0|conn_persist:85140|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-53649-3c7004910004abdb p-172.18.0.2-4443-4df4cfeb3e48b737|hsk_recv:1254|close_recv:2514|close_send:2525|last_recv:2498|last_send:2525|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,8,7,34,0,36,i0,4,24,33,4,4,2,0,4,27,36,40004,5,2,0,4,26,35,8004,3,2,0,4,18,4,11,2,4,41,4000,12,2,4,29,40000,13,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-1911,0-11,0-7,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:05 667195] [report] |scid:896c7da123c9ce08|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781325582317|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1963|last_recv:1936|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,25770,51541,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 1 - setup-only
+test-client-1  |   ---
+test-client-1  |   duration_ms: 106
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:05 689484] [error] |scid:1aab648fc2f7fc16|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 689514] [error] |scid:1aab648fc2f7fc16|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 770492] [report] |scid:1aab648fc2f7fc16|xqc_conn_destroy|000058C8060A5370|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1129|first_send_delay:0|conn_persist:82339|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-39652-34a57ba797425381 p-172.18.0.2-4443-e4562e03ba80864a|hsk_recv:702|close_recv:1798|close_send:1810|last_recv:1835|last_send:1810|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,27,36,40004,4,1,0,4,27,36,0,5,1,0,4,27,36,0,6,1,0,4,18,4,14,1,4,41,4000,15,1,4,29,40000,16,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1950,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:05 770533] [report] |scid:1aab648fc2f7fc16|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781325688460|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1503|last_recv:1528|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,34828,69657,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 2 - announce-only
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:05 795039] [error] |scid:abbb4ed64573bada|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 795057] [error] |scid:abbb4ed64573bada|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 876037] [report] |scid:abbb4ed64573bada|xqc_conn_destroy|000058C8060A5310|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1190|first_send_delay:0|conn_persist:82389|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-35236-99c868ec880fe971 p-172.18.0.2-4443-a9b4ea8ee3268196|hsk_recv:730|close_recv:1801|close_send:1811|last_recv:1836|last_send:1811|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,27,36,0,7,1,0,4,27,36,40004,5,1,0,4,27,36,0,6,1,0,4,18,4,9,1,4,41,4000,10,1,4,29,40000,11,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1983,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:05 876072] [report] |scid:abbb4ed64573bada|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781325794008|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1451|last_recv:1476|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,42664,85329,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 3 - publish-namespace-done
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:05 900682] [error] |scid:fb067a22e2215949|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 900704] [error] |scid:fb067a22e2215949|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:05 981723] [report] |scid:fb067a22e2215949|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1310|first_send_delay:0|conn_persist:82624|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-55643-b0454087dd8bdbaf p-172.18.0.2-4443-c5401cc088315da4|hsk_recv:832|close_recv:2055|close_send:2066|last_recv:2090|last_send:2066|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,27,36,40004,4,2,0,4,27,36,0,5,2,0,4,27,36,0,6,2,0,4,18,4,12,1,4,41,4000,13,2,4,29,40000,14,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-1948,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:05 981764] [report] |scid:fb067a22e2215949|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781325899436|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1729|last_recv:1753|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,28338,56676,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 4 - subscribe-error
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 006179] [error] |scid:6c2b73399b55e778|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 006208] [error] |scid:6c2b73399b55e778|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 087247] [report] |scid:6c2b73399b55e778|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1186|first_send_delay:0|conn_persist:82451|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-50124-328311cccbd22e30 p-172.18.0.2-4443-d4bedd122125d094|hsk_recv:742|close_recv:1886|close_send:1897|last_recv:1878|last_send:1897|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,14,10,9,34,0,36,i0,4,25,34,40004,7,1,0,4,24,33,4,5,1,0,4,22,31,4,6,1,0,4,18,8,11,1,4,29,40000,12,1,4,22,14,10,1,0-2,0-2,0-0,0-0,0-0,0-0,0-2989,0-1964,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:06 087296] [report] |scid:6c2b73399b55e778|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326005128|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1565|last_recv:1546|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,41859,83719,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 5 - rendezvous-timeout
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 111851] [error] |scid:5a302c04602cde48|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 111882] [error] |scid:5a302c04602cde48|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 192846] [report] |scid:5a302c04602cde48|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1303|first_send_delay:0|conn_persist:82504|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-54241-07228f05c232a828 p-172.18.0.2-4443-a64028c42c9dc6b5|hsk_recv:857|close_recv:1947|close_send:1957|last_recv:1980|last_send:1957|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,27,36,0,7,1,0,4,27,36,40004,5,1,0,4,27,36,0,6,1,0,4,18,4,13,1,4,41,4000,14,1,4,29,40000,15,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1983,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:06 192898] [report] |scid:5a302c04602cde48|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326110731|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1568|last_recv:1591|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,35636,71273,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 6 - announce-subscribe
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 217417] [error] |scid:7d60d3951df97fce|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 217441] [error] |scid:7d60d3951df97fce|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 298623] [report] |scid:7d60d3951df97fce|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1236|first_send_delay:0|conn_persist:82693|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-55673-597315f391b44fb4 p-172.18.0.2-4443-abb2053196ceb39c|hsk_recv:804|close_recv:2004|close_send:2016|last_recv:2040|last_send:2016|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,27,36,0,7,2,0,4,27,36,40004,5,1,0,4,27,36,0,6,2,0,4,18,4,11,1,4,41,4000,12,1,4,29,40000,13,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1974,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:06 298667] [report] |scid:7d60d3951df97fce|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326216252|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1693|last_recv:1717|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,29144,58289,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 7 - subscribe-before-announce
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 323244] [error] |scid:309a43bedc30e35b|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 323270] [error] |scid:309a43bedc30e35b|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 404347] [report] |scid:309a43bedc30e35b|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1221|first_send_delay:0|conn_persist:82588|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-38400-2761cb4cbd6c715f p-172.18.0.2-4443-e8c3cdeada1c950f|hsk_recv:763|close_recv:1995|close_send:2008|last_recv:1982|last_send:2008|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,14,10,9,34,0,36,i0,4,25,34,40004,8,1,0,4,24,33,4,5,1,0,4,22,31,4,6,1,0,4,18,8,14,1,4,29,40000,15,2,4,22,14,13,1,0-2,0-2,0-0,0-0,0-0,0-0,0-2989,0-1964,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:06 404390] [report] |scid:309a43bedc30e35b|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326322090|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1677|last_recv:1651|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,38998,77996,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 8 - data-subgroup-basic
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 429066] [error] |scid:5673473854fdb648|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 429084] [error] |scid:5673473854fdb648|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 429606] [error] |scid:5673473854fdb648|xqc_h3_stream_process_data|xqc_stream_recv error|-626|
+test-client-1  | [2026/11/15 22:22:06 510259] [report] |scid:5673473854fdb648|xqc_h3_request_destroy|stream_id:0|close_msg:remote reset|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326427849|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1801|last_recv:1882|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,35970,71940,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:06 510308] [report] |scid:5673473854fdb648|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1318|first_send_delay:0|conn_persist:82870|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-53866-60a37fc6f7e7ba68 p-172.18.0.2-4443-4247447ad40c8785|hsk_recv:840|close_recv:2189|close_send:2212|last_recv:2293|last_send:2212|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,27,36,0,7,2,0,4,29,38,c,5,2,0,4,27,36,40004,6,2,0,4,18,4,11,2,4,41,4000,12,2,4,29,40000,13,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-1985,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | not ok 9 - subscribe-namespace-lifecycle
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 534982] [error] |scid:e0226b42a6484c38|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 535001] [error] |scid:e0226b42a6484c38|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 615951] [report] |scid:e0226b42a6484c38|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1343|first_send_delay:0|conn_persist:82602|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-47533-c79f4052d4cb9664 p-172.18.0.2-4443-e4ed7b02748deabb|hsk_recv:831|close_recv:2061|close_send:2072|last_recv:2050|last_send:2072|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,8,7,34,0,36,i0,4,22,31,4,4,1,0,4,25,34,40004,5,2,0,4,24,33,8004,3,1,0,4,18,4,8,1,4,41,4000,9,1,4,29,40000,10,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-1903,0-11,0-7,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:06 615992] [report] |scid:e0226b42a6484c38|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326533754|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1666|last_recv:1644|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,34593,69186,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 10 - publish-track-only
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 640438] [error] |scid:6bed0261716719c5|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 640458] [error] |scid:6bed0261716719c5|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 640922] [error] |scid:6bed0261716719c5|xqc_h3_stream_process_data|xqc_stream_recv error|-626|
+test-client-1  | [2026/11/15 22:22:06 721503] [report] |scid:6bed0261716719c5|xqc_h3_request_destroy|stream_id:0|close_msg:remote reset|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326639333|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1638|last_recv:1605|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,34828,69657,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:06 721550] [report] |scid:6bed0261716719c5|xqc_conn_destroy|000058C8060B1BA0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1247|first_send_delay:0|conn_persist:82559|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-36753-909e321004e59bb3 p-172.18.0.2-4443-7cb91e375b17e19c|hsk_recv:821|close_recv:1956|close_send:1980|last_recv:1947|last_send:1980|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,24,33,4,4,1,0,4,29,38,c,5,1,0,4,25,34,40004,6,1,0,4,18,4,12,1,4,41,4000,13,1,4,29,40000,14,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1947,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | not ok 11 - publish-track-subscribe
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 746023] [error] |scid:6fb98a7f2bc7c875|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 746042] [error] |scid:6fb98a7f2bc7c875|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 826953] [report] |scid:6fb98a7f2bc7c875|xqc_conn_destroy|000058C806086DD0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1158|first_send_delay:0|conn_persist:82349|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-50849-c1eae84bb8a05e29 p-172.18.0.2-4443-b42b1e09552a6416|hsk_recv:694|close_recv:1810|close_send:1821|last_recv:1846|last_send:1821|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,25,34,0,7,1,0,4,25,34,40004,5,1,0,4,25,34,0,6,1,0,4,18,4,15,1,4,41,4000,16,1,4,29,40000,17,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1971,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:06 826998] [report] |scid:6fb98a7f2bc7c875|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326744926|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1499|last_recv:1524|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,42080,84160,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 12 - moq-test-subgroup-per-group-eog
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 851560] [error] |scid:1263830e01c8d5d9|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 851606] [error] |scid:1263830e01c8d5d9|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 852130] [error] |scid:1263830e01c8d5d9|xqc_h3_stream_process_data|xqc_stream_recv error|-626|
+test-client-1  | [2026/11/15 22:22:06 932772] [report] |scid:1263830e01c8d5d9|xqc_h3_request_destroy|stream_id:0|close_msg:remote reset|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326850379|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1789|last_recv:1816|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,36139,72279,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:06 932819] [report] |scid:1263830e01c8d5d9|xqc_conn_destroy|000058C806086DD0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1252|first_send_delay:0|conn_persist:82782|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-53792-ca905dd8b89d365b p-172.18.0.2-4443-89bc04e5cbb57401|hsk_recv:762|close_recv:2118|close_send:2131|last_recv:2158|last_send:2131|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,11,10,34,0,36,i0,4,27,36,40004,7,2,0,4,27,36,0,8,2,0,4,29,38,c,6,2,0,4,18,4,9,1,4,41,4000,10,2,4,29,40000,11,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-2014,0-11,0-10,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | not ok 13 - moq-test-subgroup-per-object
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:06 957350] [error] |scid:a28d323913396c48|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:06 957369] [error] |scid:a28d323913396c48|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 038806] [report] |scid:a28d323913396c48|xqc_conn_destroy|000058C8060A82E0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1189|first_send_delay:0|conn_persist:82941|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-35998-da113e02f65e14e5 p-172.18.0.2-4443-1821186e21dee0c4|hsk_recv:745|close_recv:1910|close_send:1921|last_recv:1898|last_send:1921|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,8,7,34,0,36,i0,4,24,33,4,4,1,0,4,27,36,40004,5,1,0,4,24,33,8004,3,1,0,4,18,4,14,1,4,41,4000,15,1,4,29,40000,16,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1907,0-11,0-7,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 038843] [report] |scid:a28d323913396c48|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781326956212|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1574|last_recv:1551|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,36310,72621,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 14 - moq-test-two-subgroups-eog
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 063395] [error] |scid:dedb3e01914abeb3|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 063414] [error] |scid:dedb3e01914abeb3|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 144381] [report] |scid:dedb3e01914abeb3|xqc_conn_destroy|000058C8060A81D0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1223|first_send_delay:0|conn_persist:82526|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-60773-8633f4a385c2564f p-172.18.0.2-4443-beb7faf1fb54e5d6|hsk_recv:748|close_recv:1963|close_send:1973|last_recv:1997|last_send:1973|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,11,10,34,0,36,i0,4,27,36,0,7,1,0,4,27,36,0,8,1,0,4,27,36,40004,6,1,0,4,18,4,13,1,4,41,4000,14,1,4,29,40000,15,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-2014,0-11,0-10,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 144434] [report] |scid:dedb3e01914abeb3|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327062205|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1623|last_recv:1647|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,35886,71772,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 15 - moq-test-datagram
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 169099] [error] |scid:94f35e40bde153e2|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 169125] [error] |scid:94f35e40bde153e2|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 250114] [report] |scid:94f35e40bde153e2|xqc_conn_destroy|000058C8060A80A0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1334|first_send_delay:0|conn_persist:82648|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-42871-ae1a96fa4532e459 p-172.18.0.2-4443-c9c63aaae2585b6b|hsk_recv:803|close_recv:2068|close_send:2080|last_recv:2122|last_send:2080|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,8,7,34,0,36,i0,4,27,36,40004,4,2,0,4,27,36,0,5,2,0,4,26,35,8004,3,1,0,4,18,4,14,1,4,41,4000,15,2,4,29,40000,16,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-1912,0-11,0-7,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 250165] [report] |scid:94f35e40bde153e2|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327167860|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1686|last_recv:1728|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,35308,70617,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 16 - moq-test-datagram-eog
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 274613] [error] |scid:6342aa482c0ad959|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 274640] [error] |scid:6342aa482c0ad959|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 275081] [error] |scid:6342aa482c0ad959|xqc_h3_stream_process_data|xqc_stream_recv error|-626|
+test-client-1  | [2026/11/15 22:22:07 275098] [error] |scid:6342aa482c0ad959|xqc_h3_stream_process_data|xqc_stream_recv error|-626|
+test-client-1  | [2026/11/15 22:22:07 355786] [report] |scid:6342aa482c0ad959|xqc_h3_request_destroy|stream_id:0|close_msg:remote reset|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327273527|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1722|last_recv:1747|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,38112,76225,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:07 355844] [report] |scid:6342aa482c0ad959|xqc_conn_destroy|000058C8060A80A0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1183|first_send_delay:0|conn_persist:82641|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-52645-f691e7baa191e5ad p-172.18.0.2-4443-eff3e9f63eecb0bd|hsk_recv:764|close_recv:2024|close_send:2046|last_recv:2071|last_send:2046|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,16,10,9,34,0,36,i0,4,25,34,0,7,2,0,4,34,43,1c,5,1,0,4,25,34,40004,6,2,0,4,29,40000,13,2,4,41,4000,11,1,4,17,8,12,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3051,0-1986,0-12,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:12|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | not ok 17 - moq-test-extensions
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 380411] [error] |scid:281b9ade5a8fb403|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 380441] [error] |scid:281b9ade5a8fb403|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 461452] [report] |scid:281b9ade5a8fb403|xqc_conn_destroy|000058C8060A80A0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1303|first_send_delay:0|conn_persist:82543|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-47060-f8c9ff4eae7b84c9 p-172.18.0.2-4443-994065220e55d4d0|hsk_recv:836|close_recv:1946|close_send:1956|last_recv:1981|last_send:1956|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,25,34,0,7,1,0,4,25,34,40004,5,1,0,4,25,34,0,6,1,0,4,18,4,11,1,4,41,4000,12,1,4,29,40000,13,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1971,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 461500] [report] |scid:281b9ade5a8fb403|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327379299|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1565|last_recv:1590|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,36396,72793,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 18 - moq-test-increments
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 486058] [error] |scid:ee515daaa07c87d4|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 486086] [error] |scid:ee515daaa07c87d4|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 567076] [report] |scid:ee515daaa07c87d4|xqc_conn_destroy|000058C8060A7F90|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1248|first_send_delay:0|conn_persist:82522|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-32883-005a9914c9711680 p-172.18.0.2-4443-bdcf59211a47c01f|hsk_recv:780|close_recv:1927|close_send:1937|last_recv:1958|last_send:1937|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,24,33,4,4,1,0,4,27,36,40004,5,1,0,4,27,36,0,6,1,0,4,18,4,12,1,4,41,4000,13,1,4,29,40000,14,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1945,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 567129] [report] |scid:ee515daaa07c87d4|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327484966|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1524|last_recv:1545|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,41399,82799,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 19 - moq-test-forward-zero
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 591866] [error] |scid:5bb0db31d3198fea|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 591896] [error] |scid:5bb0db31d3198fea|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 672964] [report] |scid:5bb0db31d3198fea|xqc_conn_destroy|000058C8060A7F90|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1212|first_send_delay:0|conn_persist:82639|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-60862-7a57a01918566a6e p-172.18.0.2-4443-1b49ea717b65895b|hsk_recv:764|close_recv:2058|close_send:2071|last_recv:2100|last_send:2071|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,24,33,4,4,2,0,4,27,36,40004,5,2,0,4,27,36,0,6,2,0,4,18,4,15,1,4,41,4000,16,1,4,29,40000,17,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3019,0-1943,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 673016] [report] |scid:5bb0db31d3198fea|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327590707|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1689|last_recv:1718|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,36054,72109,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 20 - publish-namespace-multi-publisher-retention
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 697565] [error] |scid:15e826c4d1da2c12|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 697606] [error] |scid:15e826c4d1da2c12|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 698115] [error] |scid:15e826c4d1da2c12|xqc_h3_stream_process_data|xqc_stream_recv error|-626|
+test-client-1  | [2026/11/15 22:22:07 778676] [report] |scid:15e826c4d1da2c12|xqc_h3_request_destroy|stream_id:0|close_msg:remote reset|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327696415|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1736|last_recv:1781|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,37830,75661,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:07 778726] [report] |scid:15e826c4d1da2c12|xqc_conn_destroy|000058C8060A7F90|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1181|first_send_delay:0|conn_persist:82642|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-38908-bffeeb46bc84f51b p-172.18.0.2-4443-6553b616d9dce628|hsk_recv:732|close_recv:2055|close_send:2067|last_recv:2112|last_send:2067|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,27,36,0,8,2,0,4,29,38,c,6,2,0,4,27,36,40004,7,2,0,4,18,4,13,1,4,41,4000,14,1,4,29,40000,15,2,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1985,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | not ok 21 - fetch
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 803306] [error] |scid:e81639db2687f488|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 803335] [error] |scid:e81639db2687f488|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 884333] [report] |scid:e81639db2687f488|xqc_conn_destroy|000058C8060A7F90|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1272|first_send_delay:0|conn_persist:82502|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-58481-33b15668956e83e9 p-172.18.0.2-4443-b2b7c9085ce7e2b9|hsk_recv:825|close_recv:1941|close_send:1951|last_recv:1977|last_send:1951|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,27,36,0,7,1,0,4,27,36,40004,5,1,0,4,27,36,0,6,1,0,4,18,4,14,1,4,41,4000,15,1,4,29,40000,16,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1979,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 884380] [report] |scid:e81639db2687f488|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327802194|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1587|last_recv:1613|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,35471,70943,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 22 - join
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:07 908980] [error] |scid:80909befb8deb051|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 909009] [error] |scid:80909befb8deb051|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:07 990043] [report] |scid:80909befb8deb051|xqc_conn_destroy|000058C8060A7F90|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1219|first_send_delay:0|conn_persist:82540|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-36980-579e597b994b038f p-172.18.0.2-4443-dfbb0ed5e003d560|hsk_recv:760|close_recv:1961|close_send:1973|last_recv:1998|last_send:1973|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,10,9,34,0,36,i0,4,27,36,0,8,1,0,4,27,36,40004,6,1,0,4,27,36,0,7,1,0,4,18,4,12,1,4,41,4000,13,1,4,29,40000,14,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3020,0-1981,0-11,0-9,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:07 990086] [report] |scid:80909befb8deb051|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781327907886|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1590|last_recv:1615|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,35719,71438,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 23 - namespace-discovery
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:08 014525] [error] |scid:f94f20fe0b9d473a|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 014544] [error] |scid:f94f20fe0b9d473a|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 018245] [error] |scid:3277f38448224e68|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 018276] [error] |scid:3277f38448224e68|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 018678] [error] |scid:3277f38448224e68|xqc_h3_stream_process_data|xqc_stream_recv error|-626|
+test-client-1  | [2026/11/15 22:22:08 095163] [report] |scid:f94f20fe0b9d473a|xqc_conn_destroy|000058C8060A7F90|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1145|first_send_delay:0|conn_persist:81987|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-52853-8d1403489848b6ca p-172.18.0.2-4443-936f002527c3767b|hsk_recv:717|close_recv:1813|close_send:1825|last_recv:1806|last_send:1825|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,24,33,4,4,1,0,4,22,31,4,5,1,0,4,25,34,40004,6,1,0,4,18,4,12,1,4,41,4000,13,1,4,29,40000,14,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1940,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:08 095214] [report] |scid:f94f20fe0b9d473a|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781328013503|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1498|last_recv:1479|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,41399,82799,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:08 099487] [report] |scid:3277f38448224e68|xqc_h3_request_destroy|stream_id:0|close_msg:remote reset|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781328017347|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1381|last_recv:1349|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,0)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,51369,102738,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:08 099531] [report] |scid:3277f38448224e68|xqc_conn_destroy|000058C8060C1BC0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:943|first_send_delay:0|conn_persist:82432|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-52853-1e6597ff49a0e69e p-172.18.0.2-4443-dc0783ecf3bbf30a|hsk_recv:553|close_recv:1609|close_send:1629|last_recv:1597|last_send:1629|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,22,31,4,4,1,0,4,27,36,c,5,1,0,4,25,34,40004,6,1,0,4,18,4,8,1,4,41,4000,10,1,4,29,40000,11,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1939,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | not ok 24 - publish-subscribe-media
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:08 119971] [error] |scid:df1470f753c5ef74|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 120000] [error] |scid:df1470f753c5ef74|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 123644] [error] |scid:f416ff1fc8f4dc6c|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 123675] [error] |scid:f416ff1fc8f4dc6c|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 200549] [report] |scid:df1470f753c5ef74|xqc_conn_destroy|000058C8060830D0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1283|first_send_delay:0|conn_persist:82058|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-57631-1567eda056c9b1ef p-172.18.0.2-4443-f340d360c5406992|hsk_recv:835|close_recv:1938|close_send:1949|last_recv:1931|last_send:1949|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,9,8,34,0,36,i0,4,22,31,4,4,1,0,4,22,31,4,5,1,0,4,25,34,40004,6,1,0,4,18,4,8,1,4,41,4000,9,1,4,29,40000,10,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1934,0-11,0-8,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:08 200624] [report] |scid:df1470f753c5ef74|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781328118863|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1577|last_recv:1559|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,36744,73489,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:08 204918] [report] |scid:f416ff1fc8f4dc6c|xqc_conn_destroy|000058C8060847E0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:882|first_send_delay:0|conn_persist:82385|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-57631-9cd54ab434fe8e93 p-172.18.0.2-4443-7ef4c4b72c12e5be|hsk_recv:511|close_recv:1563|close_send:1573|last_recv:1547|last_send:1573|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,8,7,34,0,36,i0,4,24,33,4,4,1,0,4,25,34,40004,5,1,0,4,26,35,8004,3,1,0,4,18,4,15,1,4,41,4000,16,1,4,29,40000,17,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1909,0-11,0-7,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:08 204952] [report] |scid:f416ff1fc8f4dc6c|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781328122755|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1351|last_recv:1325|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,0)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,54082,108164,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 25 - media-catalog-error
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | [2026/11/15 22:22:08 225195] [error] |scid:0d90dde1b82dd8cb|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 225224] [error] |scid:0d90dde1b82dd8cb|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 228750] [error] |scid:0c8032581ec27410|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 228778] [error] |scid:0c8032581ec27410|xqc_ssl_new_session_cb|early data is not enabled|
+test-client-1  | [2026/11/15 22:22:08 305600] [report] |scid:0d90dde1b82dd8cb|xqc_conn_destroy|000058C8060A7F90|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:1129|first_send_delay:0|conn_persist:81737|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-53482-d85e26a9fcbaf416 p-172.18.0.2-4443-63c769a89d267a78|hsk_recv:679|close_recv:1749|close_send:1761|last_recv:1732|last_send:1761|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,8,7,34,0,36,i0,4,24,33,4,4,1,0,4,27,36,40004,5,1,0,4,24,33,8004,3,1,0,4,18,4,12,1,4,41,4000,13,1,4,29,40000,14,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1907,0-11,0-7,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:08 305651] [report] |scid:0d90dde1b82dd8cb|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781328224165|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1458|last_recv:1429|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,1)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,42664,85329,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | [2026/11/15 22:22:08 307866] [report] |scid:0c8032581ec27410|xqc_conn_destroy|000058C8060D84D0|has_0rtt:0|0rtt_accept:0|token_ok:-1|handshake_time:808|first_send_delay:0|conn_persist:80149|keyupdate_cnt:0|err:0x0|close_msg:remote close|l-0.0.0.0-53482-2a3eb797aee94d5b p-172.18.0.2-4443-63ae397ce2d41193|hsk_recv:433|close_recv:1440|close_send:1450|last_recv:1427|last_send:1450|mp_enable:0|create:1|validated:1|active:1|path_info:0/0/0/a/0,1,1,1,0,0,0,0,0,0,0,15,8,7,34,0,36,i0,4,24,33,4,4,1,0,4,25,34,40004,5,1,0,4,26,35,8004,3,1,0,4,18,4,15,1,4,41,4000,16,1,4,29,40000,17,1,0-2,0-2,0-0,0-0,0-0,0-0,0-3018,0-1909,0-11,0-7,0-0,0-0,0-0,0-0,0-0,0-0,0-0,0-0|alpn:h3|rebind_count:0|rebind_valid:0|rtx_pkt:0|tlp_pkt:0|snd_pkt:11|spurious_loss:0|detected_loss:0|max_pto:0|finished_streams:0|cli_bidi_s:1|svr_bidi_s:0|fec_exist:0|fec_ensch:NO_FEC|fec_desch:NO_FEC|fec_neg_fail:0|fec_mp_mode:NO_FEC|send_fec_pkts:0|recovered_fec_num:0|max_po_size:1200|max_probing_size:1420|ppo_size:1420|ext_conn_info:{"common": "0,0,0,0,0",}|max_acked_po_size:1200|enable_pmtud:0|avg_closed_time:0|passive_bidi_s_max:0|
+test-client-1  | [2026/11/15 22:22:08 307899] [report] |scid:0c8032581ec27410|xqc_h3_request_destroy|stream_id:0|close_msg:conn closed|err:267|rcvd_bdy_sz:0|snd_bdy_sz:0|rcvd_hdr_sz:0|snd_hdr_sz:0|create:1794781328227901|blkd:0|nblkd:0|hdr_b:0|hdr_e:0|bdy_b:0|fin:0|recv_end:0|hrd_send:0|bdy_send:0|fin_send:0|fin_ack:0|last_send:1265|last_recv:1242|mp_state:0|path_info:(1,0,0/0/0/a/0,0,0,0,0,0)|comp_hdr_s:0|comp_hdr_r:0|fst_fin_snd:0|sched_blk:0|sched_blk_time:0|cwnd_blk:0|cwnd_blk_time:0|pacing_blk:0|pacing_blk_time:0|begin_state:|end_state:(0,15,0,0,63207,126414,0)|is_fec_protected:0|fec_reco_pkt_cnt:0|fec_block_size_mode:0|fst_rpr_ts:0|last_rpr_ts:0|fec_fin_delay:0|external_stream_info:{}|fastpath:0|
+test-client-1  | not ok 26 - media-loc-error
+test-client-1  |   ---
+test-client-1  |   duration_ms: 105
+test-client-1  |   ...
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/utils/huffman/xqc_huffman.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/xqc_prefixed_str.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/xqc_prefixed_int.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/utils/2d_hash/xqc_2d_hash_table.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/utils/ringmem/xqc_ring_mem.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/utils/vint/xqc_discrete_int_parser.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/xqc_null_crypto.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/xqc_hkdf.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/webtransport/xqc_webtransport_conn.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/xqc_h3_ext_bytestream.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/dtable/xqc_dtable.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/stable/xqc_stable.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/xqc_ins.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/xqc_rep.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/xqc_encoder.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/xqc_decoder.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/qpack/xqc_qpack.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/xqc_h3_header.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/frame/xqc_h3_frame.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/xqc_h3_request.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/xqc_h3_stream.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/xqc_h3_conn.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/congestion_control/xqc_sample.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/congestion_control/xqc_cubic.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/utils/var_buf/xqc_var_buf.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/utils/ringarray/xqc_ring_array.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/utils/vint/xqc_variable_len_int.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/xqc_time.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/xqc_log_event_callback.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/xqc_log.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/xqc_str.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/common/xqc_random.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/boringssl/xqc_ssl_if_impl.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/boringssl/xqc_crypto_impl.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/boringssl/xqc_hkdf_impl.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/xqc_tls.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/xqc_tls_ctx.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/tls/xqc_crypto.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/scheduler/xqc_scheduler_rap.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/scheduler/xqc_scheduler_common.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/scheduler/xqc_scheduler_minrtt.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/reinjection_control/xqc_reinj_dgram.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_recv_timestamps_info.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_reinjection.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_timer.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_transport_params.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_multipath.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_utils.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_pacing.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_recv_record.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_frame.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_packet.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_send_queue.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_send_ctl.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_packet_in.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_packet_out.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_datagram.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_stream.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_frame_parser.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_packet_parser.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_cid.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_client.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_conn.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/transport/xqc_engine.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/webtransport/xqc_webtransport_stream.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/webtransport/xqc_webtransport_session.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/webtransport/xqc_webtransport_request_adapter.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/webtransport/xqc_webtransport_h3_stream.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/webtransport/xqc_webtransport_dgram.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/webtransport/xqc_webtransport_ctx.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/xqc_h3_ext_dgram.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/src/http3/xqc_h3_ctx.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_webtransport.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/cjson/cJSON.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_session.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_transport.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_quic.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_fetch.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_object.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_track.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_request.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_message.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt/xqc_moqt_codec.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt_relay/xqc_moqt_relay_data.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/moqt_relay/xqc_moqt_relay.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/msf/xqc_msf.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/CMakeFiles/xquic-static.dir/moq/loc/xqc_loc.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/tests/CMakeFiles/moqt_interop.dir/complex_case/complex_case_common.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/tests/CMakeFiles/moqt_interop.dir/__/interop/moqt/media.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/tests/CMakeFiles/moqt_interop.dir/__/interop/moqt/fixture.c.gcda:Skip
+test-client-1  | profiling:/src:Cannot create directory
+test-client-1  | profiling:/src/build/validation/tests/CMakeFiles/moqt_interop.dir/__/interop/moqt/endpoint.c.gcda:Skip
+[Ktest-client-1 exited with code 1
+ Compose Stopping Aborting on container exit...
+ Container runner-upstream-test-client-1 Stopping 
+ Container runner-upstream-test-client-1 Stopped 
+ Container runner-upstream-relay-1 Stopping 
+relay-1        | [2m2026-11-15T22:22:08.423711Z[0m [32m INFO[0m [2mmoq_relay::relay[0m[2m:[0m shutdown signal received; draining sessions (signal again to exit immediately) [3mwindow[0m[2m=[0m10s
+relay-1        | [2m2026-11-15T22:22:08.423768Z[0m [32m INFO[0m [2mmoq_relay::shutdown[0m[2m:[0m drain ended with every session gone; exiting [3melapsed[0m[2m=[0m922ns
+ Container runner-upstream-relay-1 Stopped 
+[Krelay-1 exited with code 0
+
+make: *** [Makefile:86: test] Error 1
