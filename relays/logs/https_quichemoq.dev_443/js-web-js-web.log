@@ -1,0 +1,7 @@
+[page] negotiated protocol: moqt-18
+[page] subscribe_namespace written: requestId=0
+[page] announced: broadcast=smoke-js-web-4091-10383.hang active=true
+[page] subscribe start: id=2 broadcast=smoke-js-web-4091-10383.hang track=catalog.json
+[page] subscribe written: id=2 broadcast=smoke-js-web-4091-10383.hang track=catalog.json
+[page] subscribe ok: id=2 broadcast=smoke-js-web-4091-10383.hang track=catalog.json
+decoded 0 frames from smoke-js-web-4091-10383.hang (vite)

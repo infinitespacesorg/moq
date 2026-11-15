@@ -1,0 +1,21 @@
+[2m2026-11-15T22:05:53.107483Z[0m [32m INFO[0m [2mmoq_relay::cluster[0m[2m:[0m cluster initialized [3mhop_id[0m[2m=[0m4861314189986823 [3mconfigured[0m[2m=[0mfalse
+[2m2026-11-15T22:05:53.112042Z[0m [33m WARN[0m [2mmoq_sock::bind[0m[2m:[0m UDP receive buffer is smaller than requested; raise `net.core.rmem_max` or expect packet loss under load [3mwanted[0m[2m=[0m8388608 [3mgranted[0m[2m=[0m1048576
+[2m2026-11-15T22:05:53.112063Z[0m [33m WARN[0m [2mmoq_sock::bind[0m[2m:[0m UDP send buffer is smaller than requested; raise `net.core.wmem_max` or expect packet loss under load [3mwanted[0m[2m=[0m8388608 [3mgranted[0m[2m=[0m4194304
+[2m2026-11-15T22:05:53.115329Z[0m [32m INFO[0m [2mmoq_relay::cluster[0m[2m:[0m no cluster peers configured; running standalone
+[2m2026-11-15T22:05:53.115620Z[0m [32m INFO[0m [2mmoq_tokio::connection[0m[2m:[0m connecting [3mpeer[0m[2m=[0mhttps://moqt.nokiaresearch.com:8443
+[2m2026-11-15T22:06:03.116154Z[0m [31mERROR[0m [2mmoq_tokio::connection[0m[2m:[0m connection loop exited [3merr[0m[2m=[0mreconnect timed out after 10s: timed out connecting to https://moqt.nokiaresearch.com:8443
+[2m2026-11-15T22:06:03.116267Z[0m [33m WARN[0m [2mmoq_net::model::track[0m[2m:[0m track::Producer dropped without finish() or abort() [3mtrack[0m[2m=[0m0.avc3
+[2m2026-11-15T22:06:03.116287Z[0m [33m WARN[0m [2mmoq_net::model::group[0m[2m:[0m group::Producer dropped without finish() or abort() [3msequence[0m[2m=[0m10
+[2m2026-11-15T22:06:03.116473Z[0m [33m WARN[0m [2mmoq_net::model::track[0m[2m:[0m track::Producer dropped without finish() or abort() [3mtrack[0m[2m=[0mcatalog.json
+[2m2026-11-15T22:06:03.116477Z[0m [33m WARN[0m [2mmoq_net::model::track[0m[2m:[0m track::Producer dropped without finish() or abort() [3mtrack[0m[2m=[0mcatalog.json.z
+[2m2026-11-15T22:06:03.116528Z[0m [33m WARN[0m [2mmoq_net::model::track[0m[2m:[0m track::Producer dropped without finish() or abort() [3mtrack[0m[2m=[0mcatalog
+[2m2026-11-15T22:06:03.116538Z[0m [33m WARN[0m [2mmoq_net::model::track[0m[2m:[0m track::Producer dropped without finish() or abort() [3mtrack[0m[2m=[0mtimeline.z
+[2m2026-11-15T22:06:03.116542Z[0m [33m WARN[0m [2mmoq_net::model::group[0m[2m:[0m group::Producer dropped without finish() or abort() [3msequence[0m[2m=[0m0
+Error: reconnect timed out after 10s: timed out connecting to https://moqt.nokiaresearch.com:8443
+[vost#0:0/libx264 @ 0x5e4b26b60580] Error submitting a packet to the muxer: Broken pipe
+    Last message repeated 1 times
+[out#0/h264 @ 0x5e4b26b60180] Error muxing a packet
+[out#0/h264 @ 0x5e4b26b60180] Task finished with error code: -32 (Broken pipe)
+[out#0/h264 @ 0x5e4b26b60180] Terminating thread with return code -32 (Broken pipe)
+[out#0/h264 @ 0x5e4b26b60180] Error writing trailer: Broken pipe
+[out#0/h264 @ 0x5e4b26b60180] Error closing file: Broken pipe

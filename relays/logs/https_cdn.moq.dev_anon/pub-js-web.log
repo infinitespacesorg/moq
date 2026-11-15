@@ -1,0 +1,19 @@
+publishing smoke-js-web-4091-12492.hang (fake camera, vite) to https://cdn.moq.dev/anon
+[page] negotiated protocol: moq-lite-06
+[page] announced: prefix=
+[page] announce: prefix=
+[page] announced: broadcast=sp-blume-town-test active=true
+[page] announced: broadcast=vs-d3f5366064748c123d2047ca262bfbae active=true
+[page] announce: broadcast=smoke-js-web-4091-12492.hang active=true
+[page] track info: broadcast=smoke-js-web-4091-12492.hang track=catalog.json
+[page] track info: broadcast=smoke-js-web-4091-12492.hang track=catalog.json
+[page] publish ok: broadcast=smoke-js-web-4091-12492.hang track=catalog.json
+[page] track info: broadcast=smoke-js-web-4091-12492.hang track=video
+[page] track info: broadcast=smoke-js-web-4091-12492.hang track=video
+[page] publish ok: broadcast=smoke-js-web-4091-12492.hang track=video
+[page] subscribe update: broadcast=smoke-js-web-4091-12492.hang track=video
+[page] subscribe update: broadcast=smoke-js-web-4091-12492.hang track=video
+[page] publish error: broadcast=smoke-js-web-4091-12492.hang track=catalog.json error=remote error: 1
+[page] datagram send stopped: sub=0 error=remote error: 1
+[page] publish error: broadcast=smoke-js-web-4091-12492.hang track=video error=remote error: 1
+[page] datagram send stopped: sub=1 error=remote error: 1
