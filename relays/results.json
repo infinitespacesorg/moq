@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-15T22:09:32Z",
-  "run_url": "https://github.com/infinitespacesorg/moq/actions/runs/43766859875",
+  "generated": "2026-11-16T08:21:01Z",
+  "run_url": "https://github.com/infinitespacesorg/moq/actions/runs/43829519906",
   "registry": "https://raw.githubusercontent.com/englishm/moq-interop-runner/main/implementations.json",
   "pairs": [
     "rust → rust",
@@ -99,32 +99,32 @@
       "url": "https://lminiero.it:9000",
       "transport": "WebTransport",
       "required": false,
-      "ok": false,
+      "ok": true,
       "versions": [
         "moq-transport-22"
       ],
       "cells": {
         "rust → rust": {
-          "status": "FAIL",
+          "status": "PASS",
           "pub_version": "moq-transport-22",
           "sub_version": "moq-transport-22",
-          "reason": "connected, nothing subscribed: session terminated err=transport: connection error: closed",
+          "reason": "",
           "sub_log": "https_lminiero.it_9000/rust-rust.log",
           "pub_log": "https_lminiero.it_9000/pub-rust.log"
         },
         "rust → js-web": {
-          "status": "FAIL",
+          "status": "PASS",
           "pub_version": "moq-transport-22",
           "sub_version": "moq-transport-22",
-          "reason": "connected, nothing subscribed",
+          "reason": "",
           "sub_log": "https_lminiero.it_9000/rust-js-web.log",
           "pub_log": "https_lminiero.it_9000/pub-rust.log"
         },
         "rust → js-bun": {
-          "status": "FAIL",
+          "status": "PASS",
           "pub_version": "moq-transport-22",
           "sub_version": "moq-transport-22",
-          "reason": "no SUBSCRIBE_OK for catalog.json: error: timed out waiting for data",
+          "reason": "",
           "sub_log": "https_lminiero.it_9000/rust-js-bun.log",
           "pub_log": "https_lminiero.it_9000/pub-rust.log"
         },
@@ -560,7 +560,7 @@
           "status": "FAIL",
           "pub_version": "moq-transport-22",
           "sub_version": "moq-transport-22",
-          "reason": "SUBSCRIBE for catalog.json, no SUBSCRIBE_OK logged, no objects: session terminated err=transport: connection error: closed",
+          "reason": "SUBSCRIBE for catalog.json, no SUBSCRIBE_OK logged, no objects: Error: json: remote error: code=18",
           "sub_log": "https_moq-ng.cloudflare.mediaoverquic.com_443/rust-rust.log",
           "pub_log": "https_moq-ng.cloudflare.mediaoverquic.com_443/pub-rust.log"
         },
@@ -573,10 +573,10 @@
           "pub_log": "https_moq-ng.cloudflare.mediaoverquic.com_443/pub-rust.log"
         },
         "rust → js-bun": {
-          "status": "FAIL",
+          "status": "PASS",
           "pub_version": "moq-transport-22",
           "sub_version": "moq-transport-22",
-          "reason": "SUBSCRIBE_OK for catalog.json, no objects: subscribe error: id=2 broadcast=smoke-rust-4091-231.hang track=catalog.json error=publish done: status=0x12 reason=malformed track: a copy of an object differs",
+          "reason": "",
           "sub_log": "https_moq-ng.cloudflare.mediaoverquic.com_443/rust-js-bun.log",
           "pub_log": "https_moq-ng.cloudflare.mediaoverquic.com_443/pub-rust.log"
         },
@@ -707,7 +707,7 @@
           "status": "FAIL",
           "pub_version": "",
           "sub_version": "",
-          "reason": "not connected: Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4002441us. Timeout:4s num_undecryptable_packets: 0 {}).",
+          "reason": "not connected: Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4001669us. Timeout:4s num_undecryptable_packets: 0 {}).",
           "sub_log": "https_moqt.nokiaresearch.com_8443_moq/rust-js-web.log",
           "pub_log": "https_moqt.nokiaresearch.com_8443_moq/pub-rust.log"
         },
@@ -731,7 +731,7 @@
           "status": "FAIL",
           "pub_version": "",
           "sub_version": "",
-          "reason": "not connected: Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4002669us. Timeout:4s num_undecryptable_packets: 0 {}).",
+          "reason": "not connected: Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4002469us. Timeout:4s num_undecryptable_packets: 0 {}).",
           "sub_log": "https_moqt.nokiaresearch.com_8443_moq/js-web-js-web.log",
           "pub_log": "https_moqt.nokiaresearch.com_8443_moq/pub-js-web.log"
         },
@@ -997,56 +997,56 @@
       "url": "https://quichemoq.dev:443",
       "transport": "WebTransport",
       "required": false,
-      "ok": false,
+      "ok": true,
       "versions": [
-        "moq-transport-18"
+        "moq-transport-22"
       ],
       "cells": {
         "rust → rust": {
           "status": "PASS",
-          "pub_version": "moq-transport-18",
-          "sub_version": "moq-transport-18",
+          "pub_version": "moq-transport-22",
+          "sub_version": "moq-transport-22",
           "reason": "",
           "sub_log": "https_quichemoq.dev_443/rust-rust.log",
           "pub_log": "https_quichemoq.dev_443/pub-rust.log"
         },
         "rust → js-web": {
-          "status": "FAIL",
-          "pub_version": "moq-transport-18",
-          "sub_version": "moq-transport-18",
-          "reason": "SUBSCRIBE_OK for 0.avc3, no objects",
+          "status": "PASS",
+          "pub_version": "moq-transport-22",
+          "sub_version": "moq-transport-22",
+          "reason": "",
           "sub_log": "https_quichemoq.dev_443/rust-js-web.log",
           "pub_log": "https_quichemoq.dev_443/pub-rust.log"
         },
         "rust → js-bun": {
-          "status": "FAIL",
-          "pub_version": "moq-transport-18",
-          "sub_version": "moq-transport-18",
-          "reason": "SUBSCRIBE_OK for 0.avc3, no objects: error: timed out waiting for data",
+          "status": "PASS",
+          "pub_version": "moq-transport-22",
+          "sub_version": "moq-transport-22",
+          "reason": "",
           "sub_log": "https_quichemoq.dev_443/rust-js-bun.log",
           "pub_log": "https_quichemoq.dev_443/pub-rust.log"
         },
         "js-web → rust": {
           "status": "PASS",
-          "pub_version": "moq-transport-18",
-          "sub_version": "moq-transport-18",
+          "pub_version": "moq-transport-22",
+          "sub_version": "moq-transport-22",
           "reason": "",
           "sub_log": "https_quichemoq.dev_443/js-web-rust.log",
           "pub_log": "https_quichemoq.dev_443/pub-js-web.log"
         },
         "js-web → js-web": {
-          "status": "FAIL",
-          "pub_version": "moq-transport-18",
-          "sub_version": "moq-transport-18",
-          "reason": "SUBSCRIBE_OK for catalog.json, no objects",
+          "status": "PASS",
+          "pub_version": "moq-transport-22",
+          "sub_version": "moq-transport-22",
+          "reason": "",
           "sub_log": "https_quichemoq.dev_443/js-web-js-web.log",
           "pub_log": "https_quichemoq.dev_443/pub-js-web.log"
         },
         "js-web → js-bun": {
-          "status": "FAIL",
-          "pub_version": "moq-transport-18",
-          "sub_version": "moq-transport-18",
-          "reason": "SUBSCRIBE_OK for catalog.json, no objects: error: timed out waiting for data",
+          "status": "PASS",
+          "pub_version": "moq-transport-22",
+          "sub_version": "moq-transport-22",
+          "reason": "",
           "sub_log": "https_quichemoq.dev_443/js-web-js-bun.log",
           "pub_log": "https_quichemoq.dev_443/pub-js-web.log"
         }
