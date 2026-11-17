@@ -1,7 +1,7 @@
 [
   {
-    "generated": "2026-11-16T08:21:01Z",
-    "run_url": "https://github.com/infinitespacesorg/moq/actions/runs/43829519906",
+    "generated": "2026-11-17T08:12:48Z",
+    "run_url": "https://github.com/infinitespacesorg/moq/actions/runs/44043724452",
     "endpoints": {
       "moqt://aiomoqt-relay.marzresearch.net:4443": {
         "ok": true,
@@ -28,11 +28,11 @@
         "total": 6
       },
       "moqt://lminiero.it:9000": {
-        "ok": false,
+        "ok": true,
         "versions": [
           "moq-transport-22"
         ],
-        "passed": 0,
+        "passed": 1,
         "total": 1
       },
       "https://us-west-2.relay.quicr.org:33437/relay": {
@@ -60,11 +60,11 @@
         "total": 1
       },
       "https://cdn.moq.dev/anon": {
-        "ok": true,
+        "ok": false,
         "versions": [
           "moq-lite-06"
         ],
-        "passed": 6,
+        "passed": 3,
         "total": 6
       },
       "wss://cdn.moq.dev/anon": {

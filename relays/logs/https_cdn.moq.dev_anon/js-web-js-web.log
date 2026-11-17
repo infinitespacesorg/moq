@@ -1,15 +1,12 @@
 [page] negotiated protocol: moq-lite-06
 [page] announced: prefix=
-[page] announce: prefix=
-[page] announced: broadcast=lcb-6985609-c1cb.hang active=true
 [page] announced: broadcast=sp-blume-town-test active=true
-[page] announced: broadcast=smoke-js-web-4236-28113.hang active=true
-[page] subscribe start: id=0 broadcast=smoke-js-web-4236-28113.hang track=catalog.json
-[page] subscribe ok: id=0 broadcast=smoke-js-web-4236-28113.hang track=catalog.json
-[page] received catalog hang smoke-js-web-4236-28113.hang {video: Object, clock: Object}
-[page] subscribe start: id=1 broadcast=smoke-js-web-4236-28113.hang track=video
-[page] subscribe ok: id=1 broadcast=smoke-js-web-4236-28113.hang track=video
-[page] subscribe update: id=1 broadcast=smoke-js-web-4236-28113.hang track=video
-[page] received catalog hang smoke-js-web-4236-28113.hang {video: Object, clock: Object}
-[page] subscribe update: id=1 broadcast=smoke-js-web-4236-28113.hang track=video
-decoded 5 frames from smoke-js-web-4236-28113.hang (vite)
+[page] announce: prefix=
+[page] announced: broadcast=smoke-js-web-4042-8740.hang active=true
+[page] subscribe start: id=0 broadcast=smoke-js-web-4042-8740.hang track=catalog.json
+[page] announced: broadcast=smoke-js-web-4042-8740.hang rerouted
+[page] subscribe error: id=0 broadcast=smoke-js-web-4042-8740.hang track=catalog.json error=subscribe timed out after 10000ms waiting for the first response (browser stream limit reached?)
+[page] catalog subscription ended smoke-js-web-4042-8740.hang Stream: subscribe timed out after 10000ms waiting for the first response (browser stream limit reached?)
+    at Ue (http://localhost:35637/assets/index-Cfem7Yji.js:1:15201)
+    at #d (http://localhost:35637/assets/index-Cfem7Yji.js:1:270701)
+decoded 0 frames from smoke-js-web-4042-8740.hang (vite)

@@ -1,11 +1,19 @@
-publishing smoke-js-web-4236-4873.hang (fake camera, vite) to https://moqt.nokiaresearch.com:8443/moq
-[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4001630us. Timeout:4s num_undecryptable_packets: 0 {}).
+publishing smoke-js-web-4042-11423.hang (fake camera, vite) to https://moqt.nokiaresearch.com:8443/moq
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
 [page] connection error: AggregateError: All promises were rejected
-[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4002138us. Timeout:4s num_undecryptable_packets: 0 {}).
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
 [page] connection error: AggregateError: All promises were rejected
-[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4002191us. Timeout:4s num_undecryptable_packets: 0 {}).
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
 [page] connection error: AggregateError: All promises were rejected
-[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4002604us. Timeout:4s num_undecryptable_packets: 0 {}).
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
 [page] connection error: AggregateError: All promises were rejected
-[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT (No recent network activity after 4001889us. Timeout:4s num_undecryptable_packets: 0 {}).
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
+[page] connection error: AggregateError: All promises were rejected
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
+[page] connection error: AggregateError: All promises were rejected
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
+[page] connection error: AggregateError: All promises were rejected
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
+[page] connection error: AggregateError: All promises were rejected
+[page] Failed to establish a connection to https://moqt.nokiaresearch.com:8443/moq: net::ERR_QUIC_PROTOCOL_ERROR.
 [page] connection error: AggregateError: All promises were rejected
