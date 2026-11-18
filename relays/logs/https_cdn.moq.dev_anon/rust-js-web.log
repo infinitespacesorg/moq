@@ -1,15 +1,13 @@
 [page] negotiated protocol: moq-lite-06
 [page] announced: prefix=
-[page] announced: broadcast=smoke-rust-4042-85.hang active=true
-[page] subscribe start: id=0 broadcast=smoke-rust-4042-85.hang track=catalog.json
-[page] announced: broadcast=sp-blume-town-test active=true
 [page] announce: prefix=
-[page] announced: broadcast=smoke-rust-4042-23222.hang active=true
-[page] announced: broadcast=smoke-rust-4042-23222.hang active=false
-[page] announced: broadcast=smoke-rust-4042-23222.hang active=true
-[page] announced: broadcast=smoke-rust-4042-23222.hang active=false
-[page] subscribe error: id=0 broadcast=smoke-rust-4042-85.hang track=catalog.json error=subscribe timed out after 10000ms waiting for the first response (browser stream limit reached?)
-[page] catalog subscription ended smoke-rust-4042-85.hang Stream: subscribe timed out after 10000ms waiting for the first response (browser stream limit reached?)
-    at Ue (http://localhost:46523/assets/index-Cfem7Yji.js:1:15201)
-    at #d (http://localhost:46523/assets/index-Cfem7Yji.js:1:270701)
-decoded 0 frames from smoke-rust-4042-85.hang (vite)
+[page] announced: broadcast=desk-9df687221259805b active=true
+[page] announced: broadcast=moqdesk-937e165c active=true
+[page] announced: broadcast=smoke-rust-4241-22540.hang active=true
+[page] subscribe start: id=0 broadcast=smoke-rust-4241-22540.hang track=catalog.json
+[page] announced: broadcast=sp-blume-town-test active=true
+[page] subscribe ok: id=0 broadcast=smoke-rust-4241-22540.hang track=catalog.json
+[page] received catalog hang smoke-rust-4241-22540.hang {video: Object, audio: Object, archive: Object, clock: Object}
+[page] subscribe start: id=1 broadcast=smoke-rust-4241-22540.hang track=0.avc3
+[page] subscribe ok: id=1 broadcast=smoke-rust-4241-22540.hang track=0.avc3
+decoded 20 frames from smoke-rust-4241-22540.hang (vite)

@@ -1,7 +1,7 @@
 [
   {
-    "generated": "2026-11-17T08:12:48Z",
-    "run_url": "https://github.com/infinitespacesorg/moq/actions/runs/44043724452",
+    "generated": "2026-11-18T08:13:10Z",
+    "run_url": "https://github.com/infinitespacesorg/moq/actions/runs/44263988944",
     "endpoints": {
       "moqt://aiomoqt-relay.marzresearch.net:4443": {
         "ok": true,
@@ -60,11 +60,11 @@
         "total": 1
       },
       "https://cdn.moq.dev/anon": {
-        "ok": false,
+        "ok": true,
         "versions": [
           "moq-lite-06"
         ],
-        "passed": 3,
+        "passed": 6,
         "total": 6
       },
       "wss://cdn.moq.dev/anon": {
@@ -238,6 +238,22 @@
         ],
         "passed": 1,
         "total": 1
+      },
+      "moqt://interop-k7m2-prestage.ove.us-phoenix-1.oci.oraclecloud.com:4443": {
+        "ok": true,
+        "versions": [
+          "moq-transport-16"
+        ],
+        "passed": 1,
+        "total": 1
+      },
+      "https://interop-k7m2-prestage.ove.us-phoenix-1.oci.oraclecloud.com:4443": {
+        "ok": false,
+        "versions": [
+          "moq-transport-16"
+        ],
+        "passed": 1,
+        "total": 6
       }
     }
   }
